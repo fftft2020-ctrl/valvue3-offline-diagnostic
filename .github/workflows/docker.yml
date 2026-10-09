@@ -16,7 +16,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -r skill/valvue3-offline-diagnostic/requirements-test.txt
-      - run: sudo apt-get update && sudo apt-get install -y bubblewrap
+      - name: Install host tools used by regression fixtures
+        run: sudo apt-get update && sudo apt-get install -y bubblewrap fonts-noto-cjk fonts-dejavu-core poppler-utils curl
       - run: python -m pytest -q docker/tests skill/valvue3-offline-diagnostic/scripts/tests
       - run: python skill/valvue3-offline-diagnostic/scripts/validate_offline_regressions.py
       - run: bash -n docker/*.sh
