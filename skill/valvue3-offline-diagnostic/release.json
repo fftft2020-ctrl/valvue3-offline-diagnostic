@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "name": "valvue3-offline-diagnostic",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "platform": "Linux",
   "model": "gpt-6-sol",
   "reasoning_effort": "high"

@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
   "name": "valvue3-offline-diagnostic",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "runtime": {
-    "version": "0.1.1",
-    "files_sha256": "6602af1d8a04ebd92d68a182dd2232b02f3b84cbbbad5d9e96aba60ada5e187f",
+    "version": "0.1.2",
+    "files_sha256": "15f559d0e9cef5908975dea4f5a62864d87cadb572323fb9884364b14e80fc0b",
     "experience_sha256": "1ad24982c590236a1a30b02a7a0bf0517d5904448b993878938c36e4ab92fd5d",
     "project_template_sha256": "2a2d0299e09050d3ae5c95cef500143e7ff79359d34c2e8b86fe383168f14f86"
   },
   "files": {
     "SKILL.md": {
-      "sha256": "8ad52d78c37391272e2c7f9dc5b56f575d1549515c6185b73c7b7e721a48d7b7",
-      "bytes": 5535
+      "sha256": "55c8c12c4020f352e48c747beb90b75206eb8acdba7fe8b4bcf57a7422d76f2d",
+      "bytes": 5715
     },
     "agents/openai.yaml": {
       "sha256": "db4f6800eb6ad459438f2b36504c11a009864b0c93fe9242df443eac1b3750c9",
@@ -30,8 +30,8 @@
       "bytes": 905
     },
     "distribution-files.txt": {
-      "sha256": "a29178b7649078ef6c84d763a44a928be30137211aa291907e4de4beaf5f5da8",
-      "bytes": 2938
+      "sha256": "31e782074cb559d4087c53cf59a7b03b1964622bba7b1abc34cf8de7bac5a8f0",
+      "bytes": 3120
     },
     "references/common-offline-experience.md": {
       "sha256": "1ad24982c590236a1a30b02a7a0bf0517d5904448b993878938c36e4ab92fd5d",
@@ -46,16 +46,16 @@
       "bytes": 711
     },
     "references/distribution-and-installation.md": {
-      "sha256": "82e02842318811f7c90b86c2dc440d678660d6bcfee07d92a741612f9ee5ced6",
-      "bytes": 8077
+      "sha256": "3bcecf9b36608f26f8d1f5f19d15953d294bf4aa422df060e2b4f9a7fb93aef1",
+      "bytes": 8652
     },
     "references/human-feedback-learning.md": {
       "sha256": "9835d42620f6580523e0a6a72e0953831dbea32bc70c19acb2d6f7e140a316ee",
       "bytes": 8568
     },
     "references/integrated-valve-diagnosis.md": {
-      "sha256": "8e74680b831a8e915d0bf4aaa7b24b23b1761af60bf5f0d06d16c6d64f59b456",
-      "bytes": 10240
+      "sha256": "523cab309308063eedd9ce6531dcb79a401f4399be15e891c4327499cbd51991",
+      "bytes": 12531
     },
     "references/material-extraction-workflow.md": {
       "sha256": "e9add7e8b5c0af357f295b3174959601946ff5272ff011511c051f33c9f9bdb6",
@@ -78,7 +78,7 @@
       "bytes": 3453
     },
     "release.json": {
-      "sha256": "f03088ae489001f03e56568b39dd3cef80f5a80fc8706154aa66b0cf5130f505",
+      "sha256": "3c7a3da72f5e37d295f1d43d1294a1eb593145e0c6ff18cb9ef6c1c3cf24b564",
       "bytes": 165
     },
     "requirements-test.txt": {
@@ -106,8 +106,8 @@
       "bytes": 6573
     },
     "scripts/formal_diagnosis_tools/single_valve_workflow.py": {
-      "sha256": "30d961165e383b1b1229fcc4de7c865f229950142c07a77a30078bc96852bf84",
-      "bytes": 121749
+      "sha256": "211fef2dbb7389ec9726de1e32fb6f8883f3edd1c4d25c7b62f4ba418d8e153d",
+      "bytes": 126038
     },
     "scripts/init_offline_project.py": {
       "sha256": "8364d35e2797ebd0721a5de5aff13981a8531bf2d1c26ff980f6b71358fca5ba",
@@ -118,8 +118,8 @@
       "bytes": 170
     },
     "scripts/offline_engine/business_report.py": {
-      "sha256": "c7da21fa5c0265355f2f6312f74852b8f19c775829df4c2bac8ab03be785183a",
-      "bytes": 110629
+      "sha256": "4e429b1e546d53071517d0c54a3584764be49b68129a6ee589bb5e4f854200c7",
+      "bytes": 110592
     },
     "scripts/offline_engine/config.py": {
       "sha256": "f4bcb5f3aefb1024efda04eb3c6710d61ea26702bf8df0096d0d6da813318f96",
@@ -138,8 +138,8 @@
       "bytes": 26402
     },
     "scripts/offline_engine/evidence_extraction.py": {
-      "sha256": "ab91263c2a8bf5b1ca347e6cb17e844495aa14c50865eb8ca244515dc3c1059c",
-      "bytes": 115065
+      "sha256": "cbf06d195817d77cc25b48880e38694a7b5b36401cb45ad82a9762f5b22dfb86",
+      "bytes": 119512
     },
     "scripts/offline_engine/experience.py": {
       "sha256": "2b065409234e6aab940915068f7c22309151095b7136d612ad940e90ade33f59",
@@ -154,8 +154,8 @@
       "bytes": 6243
     },
     "scripts/offline_engine/formal_diagnosis.py": {
-      "sha256": "52f847ce899e15e6e7c691f7726346b4e5e65b3154604acfb78f0ce1ea155627",
-      "bytes": 47806
+      "sha256": "de53904f9453c6a52054584b1195bf0a1ed200115a23ee3308cfbeb679b8cd62",
+      "bytes": 48338
     },
     "scripts/offline_engine/format_revision.py": {
       "sha256": "8f35d207376c5d5d24361be17aa5c69ca69214b706ecd20ae02ec05908aa806e",
@@ -185,9 +185,13 @@
       "sha256": "cd3262c575174c43ccccd9c923732f10c807e43bc7a9546e45c687e44b9437df",
       "bytes": 44645
     },
+    "scripts/offline_engine/source_reads.py": {
+      "sha256": "4f6281b2a43ec459525e016649a15e3db68f4cfa9416e47e4353ae8f1750e14d",
+      "bytes": 4864
+    },
     "scripts/offline_engine/specifications.py": {
-      "sha256": "a08f15dc8e21007626caec4f1efc0e06d11ae29194265b849563d886166854db",
-      "bytes": 16493
+      "sha256": "7866e302953decd1fea7c63c3f5062803efba5d8a77ec500189704a74f0fcf40",
+      "bytes": 24890
     },
     "scripts/offline_engine/supplementary_materials.py": {
       "sha256": "a44f585d413e1e6ddb57cd5740e0621eeaa067455a5bb0919f605a28aa102616",
@@ -266,8 +270,8 @@
       "bytes": 37146
     },
     "scripts/tests/test_formal_diagnosis_tools.py": {
-      "sha256": "865c791c16e5091f16c8c96f6a6eb3fd3207538c88c98bae2a818919307ded82",
-      "bytes": 81739
+      "sha256": "ca60e146bac521224ceb3623d96a72d2617200b4837cfc8eeed3a8f0301a26b8",
+      "bytes": 81947
     },
     "scripts/tests/test_format_revision.py": {
       "sha256": "29e3ef547f4355415dce9aff96267a3eaf1467a80ccdbf57e4efbacca0063761",
@@ -301,9 +305,13 @@
       "sha256": "0c4621baf2676af300246e1352e593489c42fa8e808e1ee89cf25c3e5ce00c8e",
       "bytes": 5578
     },
+    "scripts/tests/test_report_actuator_evidence.py": {
+      "sha256": "cb84c7aaab83f169e61204d93ba666a9cdd16aeefdd0698227b9e754b595065c",
+      "bytes": 4106
+    },
     "scripts/tests/test_report_presentation.py": {
-      "sha256": "b3039a9288f3578bb0b8d2fc9d78d859e2b4c04726923771b33b975e41ac1e1a",
-      "bytes": 17342
+      "sha256": "a37d20bd473dd59f3ff7f5341213d683652f11bc59566c13494cf83a3e9328a5",
+      "bytes": 17352
     },
     "scripts/tests/test_review_workflow.py": {
       "sha256": "79b93a3f6017bb7d34a17b8aabde6f6cdb12a8cd615344a9e398dd0371142480",
@@ -317,9 +325,17 @@
       "sha256": "2c09a4d624adfb0848c0a77fd5bbaeefc54d7a7ece63da88df9cb20c932367b2",
       "bytes": 1553
     },
+    "scripts/tests/test_source_read_guard.py": {
+      "sha256": "27ae85890e2e681d186d19cebc35a878ff6784b8bb7126b92a8ee182b9fdc4c6",
+      "bytes": 13670
+    },
     "scripts/tests/test_specification_layer.py": {
       "sha256": "8576a74f213c2e3ca7b4303a02c43d71f2c64c32bcfa80b1f7b023bbd4a94863",
       "bytes": 10854
+    },
+    "scripts/tests/test_specification_parsing_regressions.py": {
+      "sha256": "da1fc4e8f2d9e7d9b3818d786391ca124f6056a7e9eb5fabcc5e2e45c1571a6a",
+      "bytes": 18354
     },
     "scripts/tests/test_specs.py": {
       "sha256": "2ce218133e7950df6addf80aea77485c9ca006b55933bac8a7cf8a929de92403",

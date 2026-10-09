@@ -437,7 +437,7 @@ def test_specification_supplement_uses_explicit_missing_model_note() -> None:
     ] == "- / #12 (15)"
 
 
-def test_specification_supplement_normalizes_leakage_class_and_actuator_prefix() -> None:
+def test_specification_supplement_normalizes_leakage_class_and_preserves_missing_actuator() -> None:
     valve = generator.ValveReport(
         folder="FV-COMPOSITE-MODEL",
         spec_fields={
@@ -450,7 +450,7 @@ def test_specification_supplement_normalizes_leakage_class_and_actuator_prefix()
 
     rows = dict(business_report.specification_supplement_rows(valve))
     assert rows["流向 / 泄漏等级"] == "- / V"
-    assert rows["执行机构型号 / 尺寸"] == "51 / #20"
+    assert rows["执行机构型号 / 尺寸"] == "- / #20"
 
 
 def test_positioner_identity_prefers_accessory_model_and_falls_back_to_device_type() -> None:

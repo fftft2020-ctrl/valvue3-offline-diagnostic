@@ -1104,6 +1104,9 @@ def _complete_integrated_result(run_dir: Path) -> dict:
     )
     for field in result["evidence_review"]:
         result["evidence_review"][field] = True
+    for item in result["source_file_reads"]:
+        item.update(status="read", read_method="synthetic fixture; no model call",
+                    read_reference="synthetic test fixture", failure_reason="")
     for item in result["curve_assessments"]:
         item.update(
             {

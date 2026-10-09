@@ -40,6 +40,7 @@ scripts/offline_engine/presentation.py
 scripts/offline_engine/project_materials.py
 scripts/offline_engine/report_text.py
 scripts/offline_engine/review_workflow.py
+scripts/offline_engine/source_reads.py
 scripts/offline_engine/specifications.py
 scripts/offline_engine/supplementary_materials.py
 scripts/offline_engine/unit_reports.py
@@ -68,11 +69,14 @@ scripts/tests/test_pipeline.py
 scripts/tests/test_presentation_profile.py
 scripts/tests/test_project_materials.py
 scripts/tests/test_python_isolation.py
+scripts/tests/test_report_actuator_evidence.py
 scripts/tests/test_report_presentation.py
 scripts/tests/test_review_workflow.py
 scripts/tests/test_runtime_tools.py
 scripts/tests/test_skill_runtime_environment.py
+scripts/tests/test_source_read_guard.py
 scripts/tests/test_specification_layer.py
+scripts/tests/test_specification_parsing_regressions.py
 scripts/tests/test_specs.py
 scripts/tests/test_unit_reports.py
 scripts/tests/test_visual_review.py

@@ -45,7 +45,7 @@ OCR 是外部本机服务，需要提供 `/ready`（JSON `ready=true`）、`/v1/
 在源仓库完成必要回归后，指定一个尚不存在的 ZIP 路径导出：
 
 ```bash
-python scripts/build_offline_skill_package.py --output ".scratch/offline-skill-distribution/valvue3-offline-diagnostic-0.1.1.zip"
+python scripts/build_offline_skill_package.py --output ".scratch/offline-skill-distribution/valvue3-offline-diagnostic-0.1.2.zip"
 ```
 
 包内 `package-manifest.json` 保存逐文件 SHA-256、大小、发布版本及运行指纹；自检核对已安装文件，修改、遗漏或未声明文件会报错。清单用于完整性核对，不是数字签名，应从可信渠道接收 ZIP 并独立核对发布时给出的 ZIP SHA-256。不带整个仓库历史。
@@ -55,3 +55,6 @@ python scripts/build_offline_skill_package.py --output ".scratch/offline-skill-d
 分发验收分两层：在全新目录解包、校验清单、运行随包匿名测试与回归，证明文件和合同独立；在接收机器按授权运行真实资料、模型和 WPS 全链路，证明现场环境可交付。前一层不能代替后一层。
 
 源代码、白名单、锁定依赖和匿名夹具为重建所需保留项；经确认后可清理无引用的解包测试目录、pytest 缓存和探针产物，不能清理客户项目证据。ZIP 可用发布命令重建；保持相同输入会得到相同 ZIP。真实诊断重建可能重新调用模型，存在 token、时间和结果差异，优先恢复已保存冻结包。
+
+
+本仓库保存的是分发树，未包含上述上游 `build_offline_skill_package.py`，不能声称已运行该上游构建器。0.1.2 维护时使用随包 `offline_engine.distribution` 的 `distribution_files`、`file_identity`、`runtime_identity`、`verify_package`，保留原分发清单与白名单之差的四个匿名回归映射，更新版本、白名单与实际逐文件清单后进行完整性校验。该维护步骤不是发布者签名，也不代表正式发布或完整业务链路验收。0.1.1 旧分发及历史记录另行保留，不被覆盖。

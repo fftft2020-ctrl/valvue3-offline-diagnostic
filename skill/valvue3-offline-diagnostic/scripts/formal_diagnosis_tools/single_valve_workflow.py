@@ -20,6 +20,10 @@ if str(SCRIPT_ROOT) not in sys.path:
 from formal_diagnosis_tools import evidence_bundle
 from offline_engine.config import load_project
 from offline_engine.distribution import runtime_identity
+from offline_engine.source_reads import (
+    SOURCE_READ_CONTRACT, SOURCE_READ_FIELDS, source_read_template,
+    validate_source_reads, validate_source_read_acceptance,
+)
 from offline_engine.experience import load_offline_experience
 from offline_engine.curve_identity import curve_image_key
 from offline_engine.evidence_extraction import (
@@ -470,6 +474,7 @@ def _integrated_result_template(
             "active_faults_reviewed": False,
             "test_execution_issues_reviewed": False,
         },
+        "source_file_reads": source_read_template(bundle),
         "curve_assessments": curve_rows,
         "specification_observations": [
             {
@@ -611,6 +616,19 @@ def _integrated_output_schema(
                 },
                 "required": list(template["evidence_review"]),
                 "additionalProperties": False,
+            },
+            "source_file_reads": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        key: ({"type": "string", "enum": ["read", "failed", "unread"]}
+                              if key == "status" else {"type": "string"})
+                        for key in SOURCE_READ_FIELDS
+                    },
+                    "required": list(SOURCE_READ_FIELDS),
+                    "additionalProperties": False,
+                },
             },
             "curve_assessments": {
                 "type": "array",
@@ -756,6 +774,7 @@ def prepare_run(
         "worker_model": model,
         "worker_reasoning_effort": reasoning_effort,
         "skill_runtime": runtime_identity(),
+        "source_read_contract": SOURCE_READ_CONTRACT,
         **version_metadata,
         "created_at": datetime.now(timezone.utc).isoformat(),
         "common_experience_sha256": hashlib.sha256(experience_text.encode("utf-8")).hexdigest(),
@@ -1521,6 +1540,11 @@ def _assert_inheritable_inputs(
     parent_diagnosis = _read_json(
         parent_run_dir / "05_diagnosis.json"
     )
+    validate_source_read_acceptance(
+        _read_json(parent_run_dir / "01_evidence_bundle.json"),
+        _read_json(parent_run_dir / "03_observations.json"),
+        parent_diagnosis, parent_manifest,
+    )
     if (
         not isinstance(parent_diagnosis.get("diagnosis_basis"), dict)
         and not allow_legacy_parent
@@ -1546,6 +1570,15 @@ def _assert_inheritable_inputs(
     child_bundle = _read_json(
         child_run_dir / "01_evidence_bundle.json"
     )
+    # Fresh inheritance targets must already satisfy the new read contract;
+    # copying an old observation file must not create a newly accepted result.
+    if child_manifest.get("stage") != "frozen":
+        if child_manifest.get("source_read_contract") != SOURCE_READ_CONTRACT:
+            raise ValueError("inheritance target requires the current source_read_contract")
+        child_observations = _read_json(child_run_dir / "03_observations.json")
+        if child_observations.get("source_read_contract") != SOURCE_READ_CONTRACT:
+            raise ValueError("inheritance target requires source read declarations")
+        validate_source_reads(child_bundle, child_observations.get("source_file_reads"))
     if diagnostic_evidence_sha256(
         parent_bundle
     ) != diagnostic_evidence_sha256(child_bundle):
@@ -1780,6 +1813,7 @@ def prepare_integrated_model_request(
             "model": model,
             "reasoning_effort": reasoning_effort,
         },
+        "source_read_contract": SOURCE_READ_CONTRACT,
         "rating_source": "model_evidence_synthesis_only",
         "legacy_ratings_allowed": False,
         "experience_text": experience_text,
@@ -1857,6 +1891,11 @@ def prepare_integrated_model_request(
         "必须实际查看"
         "本次 codex exec 附加的该阀全部曲线及技术页图像。"
         "同时读取 evidence.source_files 列出的全部原始资料；相对路径以 source_locator.project_root 为根。"
+        "逐原件填写 source_file_reads，保留 relative_path、sha256、status、实际 read_method、"
+        "同次调用工具轨迹 read_reference 及 failure_reason。未读或失败必须如实填 unread/failed 和原因，"
+        "不得把外层文件探针、图片或转录当作本次原件读取成功。读取失败不能提交为待审诊断，"
+        "但保留完整失败输出与计量日志；不得为通过检查伪造读取记录。"
+        "这些声明只供来源/覆盖核对，不能代替实际工具轨迹与工程内容核验。"
         "不得抽样、截断或按测试标签筛选经验；无需填写经验采用编号或未采用原因。\n\n"
         f"输出必须符合 `{paths['schema']}`，可参考"
         f" `{paths['template']}` 的字段布局。\n\n"
@@ -1878,6 +1917,7 @@ def prepare_integrated_model_request(
     manifest["workflow"] = "single_valve_integrated_codex_v3"
     manifest["diagnosis_method_required"] = "codex_exec_integrated"
     manifest["algorithm_audit_contract"] = ALGORITHM_AUDIT_CONTRACT
+    manifest["source_read_contract"] = SOURCE_READ_CONTRACT
     manifest["next_file"] = INTEGRATED_TEMPLATE_FILENAME
     manifest.pop("next_operation", None)
     _write_json(manifest_path, manifest)
@@ -2041,6 +2081,32 @@ def submit_integrated_model_result(
     if result.get("valve_tag") != bundle["target_valve_tag"]:
         raise ValueError("integrated diagnosis valve_tag does not match")
 
+    try:
+        if manifest.get("source_read_contract") != SOURCE_READ_CONTRACT:
+            raise ValueError("source_read_contract missing; prepare a new versioned request")
+        validate_source_reads(bundle, result.get("source_file_reads"))
+    except ValueError as exc:
+        # Append-only failed-attempt audit. No draft, approval, or stage advance.
+        rejection = {
+            "schema_version": 1,
+            "source_read_contract": SOURCE_READ_CONTRACT,
+            "status": "rejected",
+            "reason": str(exc),
+            "attempted_at": datetime.now(timezone.utc).isoformat(),
+            "evidence_bundle_sha256": _sha256_file(run_dir / "01_evidence_bundle.json"),
+            "result_sha256": _sha256_payload(result),
+            "result": result,
+        }
+        rejected_path = (run_dir / "03_source_read_rejections"
+                         / f"{rejection['result_sha256']}.json")
+        rejected_path.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            with rejected_path.open("x", encoding="utf-8") as stream:
+                stream.write(json.dumps(rejection, ensure_ascii=False, indent=2) + "\n")
+        except FileExistsError:
+            pass
+        raise
+
     assessments = result.get("curve_assessments")
     if not isinstance(assessments, list):
         raise ValueError("curve_assessments are required")
@@ -2101,6 +2167,8 @@ def submit_integrated_model_result(
             for item in result.get("specification_observations") or []
         ],
         **review,
+        "source_read_contract": SOURCE_READ_CONTRACT,
+        "source_file_reads": deepcopy(result["source_file_reads"]),
         "curve_observations": curve_observations,
         "specification_observations": list(
             result.get("specification_observations") or []
@@ -2120,6 +2188,7 @@ def submit_integrated_model_result(
             "schema_version": 1,
             "diagnosis_basis": _diagnosis_basis(run_dir),
             "algorithm_audit_contract": ALGORITHM_AUDIT_CONTRACT,
+            "source_read_contract": SOURCE_READ_CONTRACT,
             "algorithm_audit_status": "available",
             "diagnostic_guardrails": _diagnostic_guardrails(bundle, observations),
             "human_writing_reference": _human_writing_reference(),
@@ -2270,6 +2339,9 @@ def _validate_diagnosis(
     )
     if integrated:
         _validate_integrated_model_provenance(diagnosis, *_run_model_contract(manifest))
+    validate_source_read_acceptance(
+        bundle, _read_json(run_dir / "03_observations.json"), diagnosis, manifest,
+    )
     expected_curves = Counter(
         (image["image_sha256"], image["test_key"])
         for image in bundle["evidence"]["curve_images"]
@@ -2906,7 +2978,17 @@ def _verify_freeze(
         path = run_dir / filename
         if not path.is_file() or _sha256_file(path) != expected:
             return False
-    return set(entries) == required
+    if set(entries) != required:
+        return False
+    try:
+        validate_source_read_acceptance(
+            _read_json(run_dir / "01_evidence_bundle.json"),
+            _read_json(run_dir / "03_observations.json"),
+            _read_json(run_dir / "05_diagnosis.json"), manifest,
+        )
+    except ValueError:
+        return False
+    return True
 
 
 def get_status(

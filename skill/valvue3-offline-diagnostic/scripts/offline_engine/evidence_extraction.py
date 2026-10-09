@@ -17,7 +17,7 @@ from .supplementary_materials import collect_supplementary_materials
 
 
 SCHEMA_VERSION = 1
-EXTRACTOR_VERSION = 6
+EXTRACTOR_VERSION = 7
 MISSING_VALUES = {"", "未提供", "无数据", "待业主补充", "数据不足", "待复核"}
 TEST_KEYS = {
     "STEP": "run_step",
@@ -671,7 +671,7 @@ def _source(
                     ),
                     None,
                 )
-            if selected_page is None:
+            if selected_page is None and page is None:
                 selected_page = next(
                     (
                         candidate
@@ -684,7 +684,7 @@ def _source(
                     ),
                     None,
                 )
-            if selected_page is None and pages:
+            if selected_page is None and page is None and pages:
                 selected_page = pages[0] if isinstance(pages[0], dict) else None
             if selected_page is not None:
                 page = int(selected_page.get("page_no") or 0) or None
@@ -717,6 +717,19 @@ def _source(
                         else False
                     )
                 )
+            elif page is not None and not preserve_review_provenance:
+                # An explicitly bound physical page must never inherit another
+                # cached page's location, OCR method, confidence, or degradation.
+                try:
+                    with fitz.open(path) as native_document:
+                        if 1 <= page <= len(native_document):
+                            native_text = native_document[page - 1].get_text("text")
+                            if native_text.strip():
+                                raw_text = _line_containing(native_text, value)
+                                method = "native_text"
+                                confidence = 1.0
+                except (OSError, RuntimeError, ValueError):
+                    pass
     return {
         "path": relative,
         "sha256": source_hash,
@@ -1205,6 +1218,52 @@ def _source_text(config: ProjectConfig, source: Path | None) -> str:
             return "\n".join(page.get_text("text") for page in document)
     except (OSError, RuntimeError, ValueError):
         return ""
+
+
+def _specification_source_values(
+    config: ProjectConfig, source: Path | None, page_no: int | None,
+) -> dict[str, str]:
+    """Read only the matched physical spec page, including cached key/value data.
+
+    Document-level key/value rows lack page provenance, so they are safe only
+    for a single-page source.  Never borrow another valve's specification page.
+    """
+    from .specifications import specification_source_values
+
+    if source is None or not source.is_file() or page_no is None:
+        return {}
+    cached = _ocr_document(config, source)
+    pages = cached.get("pages") if isinstance(cached, dict) else None
+    values: dict[str, str] = {}
+    if isinstance(pages, list):
+        for page in pages:
+            if not isinstance(page, dict) or page.get("page_no") != page_no:
+                continue
+            values.update(specification_source_values(
+                str(page.get("parser_text") or page.get("text") or "")
+            ))
+            containers = [page.get("structured_fields"), page]
+            if len(pages) == 1 and cached.get("page_count", 1) == 1:
+                containers.append(cached.get("structured_fields"))
+            for container in containers:
+                key_values = container.get("key_values") if isinstance(container, dict) else None
+                if not isinstance(key_values, dict):
+                    continue
+                for label, value in key_values.items():
+                    if value is None:
+                        continue
+                    for key, raw in specification_source_values(f"{label}: {value}").items():
+                        values.setdefault(key, raw)
+            if values:
+                return values
+    if source.suffix.lower() == ".pdf":
+        try:
+            with fitz.open(source) as document:
+                if 1 <= page_no <= len(document):
+                    values.update(specification_source_values(document[page_no - 1].get_text("text")))
+        except (OSError, RuntimeError, ValueError):
+            pass
+    return values
 
 
 def _source_label_page(
@@ -2002,6 +2061,7 @@ def _extract_valve(config: ProjectConfig, valve: Any) -> dict[str, Any]:
     if valve.spec_page is not None:
         spec_source = config.specs_dir / valve.spec_page.source
         spec_page = valve.spec_page.page
+    spec_source_values = _specification_source_values(config, spec_source, spec_page)
     for raw_key, field_name in SPECIFICATION_FIELDS.items():
         value = valve.spec_fields.get(raw_key)
         if _is_present(value):
@@ -2013,8 +2073,23 @@ def _extract_valve(config: ProjectConfig, valve: Any) -> dict[str, Any]:
                     page=spec_page,
                 )
                 if raw_key == "leakage_class"
-                else _candidate(config, spec_source, value, page=spec_page)
+                else _candidate(
+                    config, spec_source, spec_source_values.get(raw_key, value),
+                    normalized_value=value, page=spec_page,
+                )
             )
+            if candidate is not None and raw_key in {"valve_size", "supply_pressure"}:
+                unit_pattern = (
+                    r'(in(?:ch(?:es)?)?\.?|["″]|mm)$'
+                    if raw_key == "valve_size"
+                    else r'(psi(?:\s*[ga])?|bar(?:\s*[ga])?|[Mk]?Pa(?:\s*[ga])?)$'
+                )
+                raw_unit = re.search(unit_pattern, str(candidate["raw_value"]), re.I)
+                normalized_unit = re.search(unit_pattern, str(value), re.I)
+                candidate["raw_unit"] = raw_unit.group(1) if raw_unit else ""
+                candidate["normalized_unit"] = normalized_unit.group(1) if normalized_unit else ""
+                if candidate["raw_value"] != value:
+                    candidate["normalization_rule"] = "specification_labelled_value_normalization"
             fields[field_name] = _field(
                 candidate
             )
@@ -2143,30 +2218,34 @@ def _extract_valve(config: ProjectConfig, valve: Any) -> dict[str, Any]:
             )
         )
 
-    spec_text = _source_text(config, spec_source) if spec_source is not None else ""
-    if (
-        fields["actuator.model_display"]["status"] == "missing"
-        and re.search(
-            r"\bModel\s*/\s*Size(?:\s*/\s*Fail\s*Position)?"
-            r"[\s\S]{0,120}?"
-            r"(?:[0-9]{2}|[0-9][A-Z])\s*/\s*#?[0-9]{1,3}\b",
-            spec_text,
-            re.I,
+    for raw_key, raw_value in spec_source_values.items():
+        field_names = (
+            ("actuator.model_full", "actuator.model", "actuator.model_display", "actuator.size")
+            if raw_key == "actuator_model_size"
+            else ("actuator.model_full", "actuator.model", "actuator.model_display")
+            if raw_key == "actuator_model"
+            else (SPECIFICATION_FIELDS.get(raw_key),)
         )
-    ):
-        fields["actuator.model_display"] = _field(
-            _candidate(
+        for field_name in field_names:
+            if not field_name or fields[field_name]["status"] != "missing":
+                continue
+            candidate = _candidate(
                 config,
                 spec_source,
-                None,
+                raw_value,
                 page=spec_page,
-                record="actuator.model_display",
+                record=field_name,
                 method="native_text",
+                source_role="specification",
                 candidate_status="source_present_parser_missing",
-                reason="specification actuator Model / Size is present but parser value is missing",
+                reason="specification label has a nonblank value but the parser could not normalize it",
                 review_reason="source_present_parser_missing",
             )
-        )
+            # Keep the source value for audit/review, never promote it to a fact.
+            candidate["normalized_value"] = None
+            if not candidate["source"]["raw_text"]:
+                candidate["source"]["raw_text"] = raw_value
+            fields[field_name] = _field(candidate)
 
     context_values = {
         "context.description": valve.description,
@@ -2373,6 +2452,8 @@ def _review_candidate_value(
 ) -> Any:
     if not isinstance(candidate, dict):
         return None
+    if candidate.get("status") == "source_present_parser_missing":
+        return candidate.get("raw_value")
     if (
         field_name == "specification.leakage_class"
         and candidate.get("normalization_rule")

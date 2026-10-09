@@ -52,18 +52,148 @@ def _first(text: str, patterns: list[str]) -> str:
     return ""
 
 
+# These aliases identify fields, not arbitrary numeric strings.  Keep the same
+# boundaries for parsing and for detecting nonblank values needing review.
+_SPEC_LABELS = {
+    "actuator_model_size": r"\bModel\s*/\s*Size(?:\s*/\s*Fail\s*Position)?",
+    "actuator_model": r"\bActuator\s+Model(?:\s*(?:Number|No\.?))?",
+    "actuator_size": r"\bActuator\s+Size",
+    "positioner_model": r"\bPositioner\s+Model(?:\s*(?:Number|No\.?))?",
+    "model_no": r"\b(?:Valve\s+)?Model\s*(?:Number|No\.?)",
+    "manufacturer": r"\bManufacturer",
+    "valve_size": r"\b(?:Valve\s+Size|Body\s+Size|Size\s+in)",
+    "pressure_class": r"\b(?:Pressure\s+Class|Rating(?:\s+(?:ASME|Class))?)",
+    "rated_cv": r"\bRated\s+Cv",
+    "leakage_class": r"\bLeakage\s+(?:Class|Spec\.?)",
+    "fail_position": r"\bFail\s+Position",
+    "supply_pressure": r"\bSupply\s+Pressure",
+    "bench_range": r"\b(?:Bench|Spring)\s+Range(?:\s*/\s*Travel)?",
+    "actuator_type": r"\bActuator\s+Type\.?",
+    "body_type": r"\bBody\s+Type",
+    "end_connection": r"\bEnd\s+Connection",
+    "flow_action": r"\bFlow\s+(?:Action|to)",
+    "design_pressure": r"\bDesign\s+Press(?:ure)?\.?",
+    "design_temperature": r"\bDesign\s+Temp(?:erature)?\.?",
+    "serial_number": r"\bSerial\s*(?:Number|No\.?)",
+    "_boundary": (
+        r"\b(?:Tag(?:\s*(?:Number|No\.?))?|Test\s+Status|Shutoff\s+Pressure|"
+        r"Air\s+(?:Set|Action)|Positioner\s+Type|Body\s+Studs|Trim\s+(?:Size|Form)|"
+        r"Characteristic|Rated\s+Travel|Travel\s*/\s*Stroke\s+Time|Handwheel|"
+        r"Mounting\s*/\s*Installation)"
+    ),
+}
+_SPEC_LABEL_PATTERN = re.compile(
+    "|".join(rf"(?P<{key}>{pattern})(?![\w])" for key, pattern in _SPEC_LABELS.items()),
+    re.I,
+)
+_SPEC_BLANK_VALUES = {"", "-", "--", "—", "n/a", "n.a.", "not provided", "未提供", "无数据", "栏位为空"}
+
+
+def specification_source_values(text: str) -> dict[str, str]:
+    """Return labelled raw values, retaining unsupported values for review.
+
+    Stop at the next known field or physical value line, never search ahead for
+    an arbitrary number.  Blank labels and explicit empty placeholders stay absent.
+    """
+    text = _parser_text(text)
+    matches = list(_SPEC_LABEL_PATTERN.finditer(text))
+    values: dict[str, str] = {}
+    for index, match in enumerate(matches):
+        key = match.lastgroup or ""
+        if key == "_boundary":
+            continue
+        # Unqualified Model No/Number must not be taken from an accessory row.
+        prefix = text[max(0, text.rfind("\n", 0, match.start()) + 1):match.start()]
+        if key == "model_no" and not re.match(r"Valve\b", match.group(0), re.I):
+            previous = matches[index - 1] if index else None
+            owned_type_row = (
+                previous is not None
+                and re.fullmatch(r"(?:Positioner|Actuator)\s+Type\.?", previous.group(0), re.I)
+                and "\n" not in text[previous.end():match.start()]
+            )
+            if owned_type_row or re.search(r"\b(?:Positioner|Actuator)\s*$", prefix, re.I):
+                continue
+        if key == "actuator_model_size" and re.search(r"\b(?:Valve|Positioner)\s*$", text[:match.start()], re.I):
+            continue
+        end = matches[index + 1].start() if index + 1 < len(matches) else len(text)
+        segment = text[match.end():end]
+        tail = segment.lstrip(" \t\r\n:：|[_")
+        raw = tail.splitlines()[0].strip(" \t|]") if tail else ""
+        # A different labelled row is not the value of the preceding blank row.
+        if segment.lstrip(" \t:：|[_").startswith(("\n", "\r")) and re.match(r"[^:：]{1,80}[:：]", raw):
+            continue
+        if key == "actuator_model_size":
+            # Slash characters inside the explicit N/A placeholder are not
+            # column separators.  Evaluate each column independently so a
+            # printed fail position cannot invent an actuator model or size.
+            protected = re.sub(r"\bN/A\b", lambda item: item.group(0).replace("/", "∕"), raw, flags=re.I)
+            parts = [part.strip().replace("∕", "/") for part in protected.split("/")]
+            if len(parts) in {2, 3}:
+                for component, value in zip(("actuator_model", "actuator_size", "fail_position"), parts):
+                    if value.casefold() not in _SPEC_BLANK_VALUES:
+                        values.setdefault(component, value)
+                continue
+        if raw.casefold() not in _SPEC_BLANK_VALUES:
+            values.setdefault(key, raw)
+    return values
+
+
+def _parse_labelled_fields(text: str) -> dict[str, str]:
+    """Parse verified aliases using complete bounded values and explicit units."""
+    raw = specification_source_values(text)
+    fields: dict[str, str] = {}
+    manufacturer = raw.get("manufacturer", "")
+    if re.fullmatch(r"[A-Za-z][A-Za-z .&()-]{1,80}", manufacturer):
+        fields["manufacturer"] = manufacturer
+    model = raw.get("model_no", "")
+    model_token = re.sub(r"\s*[-=‐‑‒–—−]\s*", "-", model)
+    # A separate trailing word is table/annotation text, not a model suffix.
+    normalized = "" if re.search(r"\s+[A-Z]", model_token, re.I) else normalize_valve_model(model_token)
+    if normalized:
+        fields["model_no"] = normalized
+    elif re.fullmatch(r"\d{5}", model):
+        # A labelled numeric model is literal data, not a series-prefix mapping.
+        fields["model_no"] = model
+    size = raw.get("valve_size", "")
+    number = r"\d+(?:\.\d+|-\d+/[1-9]\d*|\s+\d+/[1-9]\d*|/[1-9]\d*)?"
+    size_match = re.fullmatch(rf"({number})\s*(in(?:ch(?:es)?)?\.?|[\"″]|mm)", size, re.I)
+    dn_match = re.fullmatch(r"DN\s*(\d+)", size, re.I)
+    if size_match:
+        unit = "mm" if size_match.group(2).lower() == "mm" else "in"
+        fields["valve_size"] = f"{size_match.group(1)} {unit}"
+    elif dn_match:
+        fields["valve_size"] = f"DN {dn_match.group(1)}"
+    pressure_class = raw.get("pressure_class", "")
+    if re.fullmatch(r"(?:(?:ANSI|ASME)\s*(?:(?:CL|CLASS)\s*)?|(?:CL|CLASS|PN)\s*)\d+", pressure_class, re.I):
+        fields["pressure_class"] = pressure_class
+    cv = raw.get("rated_cv", "")
+    if re.fullmatch(r"\d+(?:\.\d+)?", cv):
+        fields["rated_cv"] = cv
+    leakage = raw.get("leakage_class", "")
+    if re.fullmatch(r"(?:CLASS\s*)?(?:I|II|III|IV|V|VI|[1-6])", leakage, re.I):
+        fields["leakage_class"] = leakage
+    fail = raw.get("fail_position", "")
+    if re.fullmatch(r"Open|Close|Closed|Lock", fail, re.I):
+        fields["fail_position"] = fail
+    supply = raw.get("supply_pressure", "")
+    if re.fullmatch(r"\d+(?:\.\d+)?\s*(?:psi(?:\s*[ga])?|bar(?:\s*[ga])?|[Mk]?Pa(?:\s*[ga])?)", supply, re.I):
+        fields["supply_pressure"] = supply
+    return fields
+
+
 def _actuator_model_size_fail(text: str) -> tuple[str, str, str]:
     """Read the labelled actuator model/size row without using loose numbers."""
     clean = _compact(text)
-    match = re.search(
+    matches = re.finditer(
         r"\bModel\s*/\s*Size"
-        r"(?:\s*/\s*Fail\s*Position)?\s+"
+        r"(?:\s*/\s*Fail\s*Position)?(?:\s*[:：]\s*|\s+)"
         r"([0-9]{2}|[0-9][A-Z])\s*/\s*"
         r"(#?[0-9]{1,3}(?:\([0-9]{1,3}\))?)"
         r"(?:\s*/\s*(Open|Close|Closed|Lock))?\b",
         clean,
         re.I,
     )
+    match = next((item for item in matches if not re.search(r"\b(?:Valve|Positioner)\s*$", clean[:item.start()], re.I)), None)
     if not match:
         return "", "", ""
     return (
@@ -84,6 +214,7 @@ def detect_spec_format(text: str) -> str:
 
 def _parse_generic_fields(text: str) -> dict[str, str]:
     clean = _compact(text)
+    clean = re.sub(r"(?<=\w)\s*[:：]\s*", " ", clean)
     actuator_model, actuator_size, actuator_fail = _actuator_model_size_fail(text)
     sizing_selection = bool(re.search(r"Sizing\s+and\s+Selection\s+Report", clean, re.I))
     model_patterns = [
@@ -95,14 +226,21 @@ def _parse_generic_fields(text: str) -> dict[str, str]:
     ]
     normalized_model = ""
     for pattern in model_patterns:
-        normalized_model = normalize_valve_model(_first(clean, [pattern]))
+        for match in re.finditer(pattern, clean, re.I):
+            if re.match(r"Model\b", match.group(0), re.I) and re.search(
+                r"\b(?:Actuator|Positioner)\s*$", clean[:match.start()], re.I
+            ):
+                continue
+            normalized_model = normalize_valve_model(match.group(1))
+            if normalized_model:
+                break
         if normalized_model:
             break
     manufacturer = _first(
-        clean,
+        _parser_text(text),
         [
             r"\b(Masoneilan|Baker\s+Hughes|Fisher|Emerson|Flowserve|Metso|Samson)\s+Valves?\b",
-            r"\bManufacturer\s*[:：]?\s*([A-Za-z][A-Za-z ]{2,})\b",
+            r"\bManufacturer[ \t]*[:：]?[ \t]*([A-Za-z][A-Za-z ]{2,})\b",
         ],
     )
     fields = {
@@ -122,8 +260,8 @@ def _parse_generic_fields(text: str) -> dict[str, str]:
             clean,
             [r"End Connection(?:\s+CL\s*\d+)?\s+([A-Z]{1,3}\s+Flanges)"],
         ),
-        "design_pressure": _first(clean, [r"Design Press:\s*([0-9.]+\s*MPa\s*g?)", r"Design Press\s*[:：]?\s*([0-9.]+\s*MPag)"]),
-        "design_temperature": _first(clean, [r"Design Temp:\s*([-0-9/ .]+deg\s*C)", r"Design Temp\s*[:：]?\s*([-0-9/ .]+degC)"]),
+        "design_pressure": _first(clean, [r"Design Press\s*[:：]?\s*([0-9.]+\s*MPa\s*g?)", r"Design Press\s*[:：]?\s*([0-9.]+\s*MPag)"]),
+        "design_temperature": _first(clean, [r"Design Temp\s*[:：]?\s*([-0-9/ .]+deg\s*C)", r"Design Temp\s*[:：]?\s*([-0-9/ .]+degC)"]),
         "body_material": _first(clean, [r"Material\s+([A-Z][0-9]{3}\s+gr\s+[A-Z0-9() .-]+?)\s+Body Studs"]),
         "rated_cv": _first(clean, [r"Rated Cv\s+([0-9.]+)"]),
         "leakage_class": _first(clean, [r"Leakage Class\s+([IVX]+)"]),
@@ -224,7 +362,7 @@ def _parse_generic_fields(text: str) -> dict[str, str]:
 
 def _parse_control_valve_specifications(text: str) -> dict[str, str]:
     parser_text = _parser_text(text)
-    clean = _compact(parser_text)
+    clean = re.sub(r"(?<=\w)\s*[:：]\s*", " ", _compact(parser_text))
     raw_model = _model_no_from_labelled_line(parser_text)
     raw_size = _first(
         clean,
@@ -387,6 +525,27 @@ def parse_spec_fields(text: str) -> dict[str, str]:
         fields.update(_parse_control_valve_specifications(text))
     elif spec_format == "assembly_quality_plan":
         fields.update(_parse_assembly_quality_plan(text))
+    # Complete, bounded explicit values outrank loose legacy template searches.
+    # Keep the template fallback only when no supported labelled value is available.
+    labelled = _parse_labelled_fields(text)
+    raw_values = specification_source_values(text)
+    # A prefix of an unsupported literal (e.g. "6 psi-custom") is not a value.
+    # These scalar labels use complete-value validation even in legacy layouts.
+    strict_fields = {"rated_cv", "supply_pressure", "fail_position"}
+    # Explicit aliases must not inherit the legacy template's loose CL/size
+    # searches, which would turn e.g. "proprietary CL 600" into a known class.
+    for key, label in (
+        ("pressure_class", r"\bPressure\s+Class\b"),
+        ("valve_size", r"\bValve\s+Size\b"),
+        ("leakage_class", r"\bLeakage\s+Class\b"),
+        ("model_no", r"\b(?:Valve\s+)?Model\s+Number\b"),
+    ):
+        if re.search(label, _parser_text(text), re.I):
+            strict_fields.add(key)
+    for key in strict_fields:
+        if key in raw_values and key not in labelled:
+            fields.pop(key, None)
+    fields.update(labelled)
     return fields
 
 

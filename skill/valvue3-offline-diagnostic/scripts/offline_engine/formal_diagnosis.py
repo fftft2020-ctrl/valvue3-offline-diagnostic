@@ -11,6 +11,7 @@ from typing import Any, Mapping
 from .visual_review import CurveInterpretation, validate_manifest
 from .evidence_extraction import structured_evidence_accounting
 from .generator import algorithm_audit_input_digest
+from .source_reads import validate_source_read_acceptance
 
 
 class FormalDiagnosisError(ValueError):
@@ -27,6 +28,7 @@ class FormalDiagnosis:
         default_factory=dict
     )
     algorithm_audit_statuses: dict[str, str] = field(default_factory=dict)
+    source_read_statuses: dict[str, str] = field(default_factory=dict)
 
 
 _LEGACY_FROZEN_FILES = (
@@ -924,6 +926,7 @@ def load_formal_diagnosis(
     summaries: dict[str, dict[str, Any]] = {}
     algorithm_audit_snapshots: dict[str, dict[str, Any] | None] = {}
     algorithm_audit_statuses: dict[str, str] = {}
+    source_read_statuses: dict[str, str] = {}
     used_image_keys: set[str] = set()
     for valve_tag in selected_tags:
         interpretation_start = len(interpretations)
@@ -950,6 +953,12 @@ def load_formal_diagnosis(
         evidence = _read_json(run_dir / "01_evidence_bundle.json")
         observations = _read_json(run_dir / "03_observations.json")
         diagnosis = _read_json(run_dir / "05_diagnosis.json")
+        try:
+            source_read_statuses[valve_tag] = validate_source_read_acceptance(
+                evidence, observations, diagnosis, run_manifest,
+            )
+        except ValueError as exc:
+            raise FormalDiagnosisError(f"{valve_tag} source read acceptance failed: {exc}") from exc
         if require_versioned:
             if not isinstance(evidence, Mapping) or not isinstance(
                 diagnosis,
@@ -1162,4 +1171,5 @@ def load_formal_diagnosis(
         summary_overrides=summaries,
         algorithm_audit_snapshots=algorithm_audit_snapshots,
         algorithm_audit_statuses=algorithm_audit_statuses,
+        source_read_statuses=source_read_statuses,
     )
