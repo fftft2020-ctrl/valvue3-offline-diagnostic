@@ -1,0 +1,4 @@
+interface:
+  display_name: "ValVue3 Offline Diagnostic"
+  short_description: "Generate and validate reusable ValVue3 offline reports"
+  default_prompt: "Use $valvue3-offline-diagnostic to process this ValVue3 offline diagnostic project."

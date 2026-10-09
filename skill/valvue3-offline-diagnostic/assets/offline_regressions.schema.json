@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:valvue3:offline-regressions:schema:1",
+  "title": "Anonymous ValVue3 offline regression fixture",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "extractor_version",
+    "project_count",
+    "valve_count",
+    "projects"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "extractor_version": {
+      "const": "1.0.0"
+    },
+    "project_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "valve_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "projects": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/project"
+      }
+    }
+  },
+  "$defs": {
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "project_id",
+        "valves"
+      ],
+      "properties": {
+        "project_id": {
+          "type": "string",
+          "pattern": "^PROJECT-[0-9]{3}$"
+        },
+        "valves": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/valve"
+          }
+        }
+      }
+    },
+    "valve": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "valve_id",
+        "legacy",
+        "shared"
+      ],
+      "properties": {
+        "valve_id": {
+          "type": "string",
+          "pattern": "^VALVE-[0-9]{3}$"
+        },
+        "legacy": {
+          "$ref": "#/$defs/snapshot"
+        },
+        "shared": {
+          "$ref": "#/$defs/snapshot"
+        }
+      }
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rating",
+        "algorithm_rating",
+        "metrics",
+        "image_count",
+        "has_specification"
+      ],
+      "properties": {
+        "rating": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "algorithm_rating": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "metrics": {
+          "$ref": "#/$defs/metrics"
+        },
+        "image_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "has_specification": {
+          "type": "boolean"
+        }
+      }
+    },
+    "nullable_number": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "supply_pressure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "avg",
+        "max",
+        "min"
+      ],
+      "properties": {
+        "avg": {
+          "$ref": "#/$defs/nullable_number"
+        },
+        "max": {
+          "$ref": "#/$defs/nullable_number"
+        },
+        "min": {
+          "$ref": "#/$defs/nullable_number"
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Average Error",
+        "Average Hysteresis + Dead Band",
+        "Max Friction",
+        "Maximum Hysteresis + Dead Band",
+        "Mean Friction",
+        "Overshoot",
+        "Response Time Close",
+        "Response Time Open",
+        "Supply Pressure",
+        "T63",
+        "T86",
+        "Td",
+        "step_count",
+        "test_types"
+      ],
+      "properties": {
+        "Average Error": {
+          "$ref": "#/$defs/nullable_number"
+        },
+        "Average Hysteresis + Dead Band": {
+          "$ref": "#/$defs/nullable_number"
+        },
+        "Max Friction": {
+          "$ref": "#/$defs/nullable_number"
+        },
+        "Maximum Hysteresis + Dead Band": {
+          "$ref": "#/$defs/nullable_number"
+        },
+        "Mean Friction": {
+          "$ref": "#/$defs/nullable_number"
+        },
+        "Overshoot": {
+          "$ref": "#/$defs/nullable_number"
+        },
+        "Response Time Close": {
+          "$ref": "#/$defs/nullable_number"
+        },
+        "Response Time Open": {
+          "$ref": "#/$defs/nullable_number"
+        },
+        "Supply Pressure": {
+          "$ref": "#/$defs/supply_pressure"
+        },
+        "T63": {
+          "$ref": "#/$defs/nullable_number"
+        },
+        "T86": {
+          "$ref": "#/$defs/nullable_number"
+        },
+        "Td": {
+          "$ref": "#/$defs/nullable_number"
+        },
+        "step_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "test_types": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "SIG-EXT",
+              "SIG-POS",
+              "SIG-S",
+              "STEP"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,4205 @@
+{
+  "extractor_version": "1.0.0",
+  "project_count": 5,
+  "projects": [
+    {
+      "project_id": "PROJECT-001",
+      "valves": [
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 7.88,
+              "Average Hysteresis + Dead Band": 13.2,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 13.24,
+              "Mean Friction": null,
+              "Overshoot": 100.0,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 61.9725,
+                "max": 62.46,
+                "min": 60.92
+              },
+              "T63": 2.92,
+              "T86": 0.58,
+              "Td": 0.3,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 7.88,
+              "Average Hysteresis + Dead Band": 13.2,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 13.24,
+              "Mean Friction": null,
+              "Overshoot": 100.0,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 61.9725,
+                "max": 62.46,
+                "min": 60.92
+              },
+              "T63": 2.92,
+              "T86": 0.58,
+              "Td": 0.3,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-001"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 6.76,
+              "Average Hysteresis + Dead Band": 7.67,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 9.19,
+              "Mean Friction": null,
+              "Overshoot": 100.0,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.41,
+              "T86": 4.0,
+              "Td": 0.4,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 6.76,
+              "Average Hysteresis + Dead Band": 7.67,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 9.19,
+              "Mean Friction": null,
+              "Overshoot": 100.0,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.41,
+              "T86": 4.0,
+              "Td": 0.4,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-002"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 2.71,
+              "Average Hysteresis + Dead Band": 3.21,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.21,
+              "Mean Friction": null,
+              "Overshoot": 100.0,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 50.6575,
+                "max": 51.09,
+                "min": 50.0
+              },
+              "T63": 3.59,
+              "T86": 2.62,
+              "Td": 0.9,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 2.71,
+              "Average Hysteresis + Dead Band": 3.21,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.21,
+              "Mean Friction": null,
+              "Overshoot": 100.0,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 50.6575,
+                "max": 51.09,
+                "min": 50.0
+              },
+              "T63": 3.59,
+              "T86": 2.62,
+              "Td": 0.9,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-003"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 14.8,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": 67.71,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.3,
+              "T86": 3.6,
+              "Td": 1.2,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 14.8,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": 67.71,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.3,
+              "T86": 3.6,
+              "Td": 1.2,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-004"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 6.49,
+              "Average Hysteresis + Dead Band": 2.95,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 4.08,
+              "Mean Friction": null,
+              "Overshoot": 265.86,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.76,
+              "T86": 4.0,
+              "Td": 2.0,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 6.49,
+              "Average Hysteresis + Dead Band": 2.95,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 4.08,
+              "Mean Friction": null,
+              "Overshoot": 265.86,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.76,
+              "T86": 4.0,
+              "Td": 2.0,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-005"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 6.3,
+              "Average Hysteresis + Dead Band": 7.07,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 7.67,
+              "Mean Friction": null,
+              "Overshoot": 100.0,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.85,
+              "T86": 3.76,
+              "Td": 0.5,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 6.3,
+              "Average Hysteresis + Dead Band": 7.07,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 7.67,
+              "Mean Friction": null,
+              "Overshoot": 100.0,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.85,
+              "T86": 3.76,
+              "Td": 0.5,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-006"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 10.33,
+              "Average Hysteresis + Dead Band": 9.73,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 12.35,
+              "Mean Friction": null,
+              "Overshoot": 100.0,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.45,
+              "T86": 3.38,
+              "Td": 0.5,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 10.33,
+              "Average Hysteresis + Dead Band": 9.73,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 12.35,
+              "Mean Friction": null,
+              "Overshoot": 100.0,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.45,
+              "T86": 3.38,
+              "Td": 0.5,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-007"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 7.84,
+              "Average Hysteresis + Dead Band": 1.99,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.27,
+              "Mean Friction": null,
+              "Overshoot": 103.66,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 39.7825,
+                "max": 40.23,
+                "min": 39.08
+              },
+              "T63": 4.0,
+              "T86": 2.16,
+              "Td": 0.6,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 7.84,
+              "Average Hysteresis + Dead Band": 1.99,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.27,
+              "Mean Friction": null,
+              "Overshoot": 103.66,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 39.7825,
+                "max": 40.23,
+                "min": 39.08
+              },
+              "T63": 4.0,
+              "T86": 2.16,
+              "Td": 0.6,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-008"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 4.31,
+              "Average Hysteresis + Dead Band": 4.14,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 4.63,
+              "Mean Friction": null,
+              "Overshoot": 100.0,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 59.865,
+                "max": 60.37,
+                "min": 59.2
+              },
+              "T63": 2.28,
+              "T86": 3.52,
+              "Td": 0.4,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 4.31,
+              "Average Hysteresis + Dead Band": 4.14,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 4.63,
+              "Mean Friction": null,
+              "Overshoot": 100.0,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 59.865,
+                "max": 60.37,
+                "min": 59.2
+              },
+              "T63": 2.28,
+              "T86": 3.52,
+              "Td": 0.4,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-009"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 4.44,
+              "Average Hysteresis + Dead Band": 4.23,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 4.56,
+              "Mean Friction": null,
+              "Overshoot": 212.2,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.44,
+              "T86": 3.81,
+              "Td": 0.5,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 4.44,
+              "Average Hysteresis + Dead Band": 4.23,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 4.56,
+              "Mean Friction": null,
+              "Overshoot": 212.2,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.44,
+              "T86": 3.81,
+              "Td": 0.5,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-010"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 1.53,
+              "Average Hysteresis + Dead Band": 0.51,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.64,
+              "Mean Friction": null,
+              "Overshoot": 92.68,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 41.165,
+                "max": 41.36,
+                "min": 40.9
+              },
+              "T63": 1.39,
+              "T86": 1.94,
+              "Td": 1.1,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 1.53,
+              "Average Hysteresis + Dead Band": 0.51,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.64,
+              "Mean Friction": null,
+              "Overshoot": 92.68,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 41.165,
+                "max": 41.36,
+                "min": 40.9
+              },
+              "T63": 1.39,
+              "T86": 1.94,
+              "Td": 1.1,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-011"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": null,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": null,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": null,
+              "step_count": 0,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": null,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": null,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": null,
+              "step_count": 0,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-012"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 2.87,
+              "Average Hysteresis + Dead Band": 0.26,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.37,
+              "Mean Friction": null,
+              "Overshoot": 68.3,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 41.9125,
+                "max": 42.02,
+                "min": 41.75
+              },
+              "T63": 2.67,
+              "T86": 2.94,
+              "Td": 2.0,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 2.87,
+              "Average Hysteresis + Dead Band": 0.26,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.37,
+              "Mean Friction": null,
+              "Overshoot": 68.3,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 41.9125,
+                "max": 42.02,
+                "min": 41.75
+              },
+              "T63": 2.67,
+              "T86": 2.94,
+              "Td": 2.0,
+              "step_count": 32,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-013"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": null,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": null,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": null,
+              "step_count": 0,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": null,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": null,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": null,
+              "step_count": 0,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-014"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": null,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": null,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": null,
+              "step_count": 0,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": null,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": null,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": null,
+              "step_count": 0,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-015"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": null,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": null,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": null,
+              "step_count": 0,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": null,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": null,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": null,
+              "step_count": 0,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-016"
+        }
+      ]
+    },
+    {
+      "project_id": "PROJECT-002",
+      "valves": [
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": false,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 4.16,
+              "Average Hysteresis + Dead Band": 1.645,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.67,
+              "Mean Friction": null,
+              "Overshoot": 17.82,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 71.27,
+                "max": 71.29,
+                "min": 71.25
+              },
+              "T63": 0.86,
+              "T86": 4.67,
+              "Td": 0.5,
+              "step_count": 16,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": false,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 4.16,
+              "Average Hysteresis + Dead Band": 1.645,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.67,
+              "Mean Friction": null,
+              "Overshoot": 17.82,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 71.27,
+                "max": 71.29,
+                "min": 71.25
+              },
+              "T63": 0.86,
+              "T86": 4.67,
+              "Td": 0.5,
+              "step_count": 16,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-001"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": false,
+            "image_count": 5,
+            "metrics": {
+              "Average Error": 16.15,
+              "Average Hysteresis + Dead Band": 0.561,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.627,
+              "Mean Friction": null,
+              "Overshoot": 64.53,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 60.3675,
+                "max": 60.78,
+                "min": 59.13
+              },
+              "T63": 0.82,
+              "T86": 1.38,
+              "Td": 0.5,
+              "step_count": 16,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": false,
+            "image_count": 5,
+            "metrics": {
+              "Average Error": 16.15,
+              "Average Hysteresis + Dead Band": 0.561,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.627,
+              "Mean Friction": null,
+              "Overshoot": 64.53,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 60.3675,
+                "max": 60.78,
+                "min": 59.13
+              },
+              "T63": 0.82,
+              "T86": 1.38,
+              "Td": 0.5,
+              "step_count": 16,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-002"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": false,
+            "image_count": 7,
+            "metrics": {
+              "Average Error": 12.79,
+              "Average Hysteresis + Dead Band": 6.22,
+              "Max Friction": 107.283,
+              "Maximum Hysteresis + Dead Band": 6.77,
+              "Mean Friction": 61.797,
+              "Overshoot": 807.32,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 40.72846153846154,
+                "max": 41.42,
+                "min": 39.3
+              },
+              "T63": 10.56,
+              "T86": 10.57,
+              "Td": 10.5,
+              "step_count": 56,
+              "test_types": [
+                "SIG-EXT",
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": false,
+            "image_count": 7,
+            "metrics": {
+              "Average Error": 12.79,
+              "Average Hysteresis + Dead Band": 6.22,
+              "Max Friction": 107.283,
+              "Maximum Hysteresis + Dead Band": 6.77,
+              "Mean Friction": 61.797,
+              "Overshoot": 807.32,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 40.72846153846154,
+                "max": 41.42,
+                "min": 39.3
+              },
+              "T63": 10.56,
+              "T86": 10.57,
+              "Td": 10.5,
+              "step_count": 56,
+              "test_types": [
+                "SIG-EXT",
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-003"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": false,
+            "image_count": 7,
+            "metrics": {
+              "Average Error": 12.19,
+              "Average Hysteresis + Dead Band": 11.982,
+              "Max Friction": 9.185,
+              "Maximum Hysteresis + Dead Band": 14.27,
+              "Mean Friction": 9.185,
+              "Overshoot": 137.92,
+              "Response Time Close": 0.3,
+              "Response Time Open": 0.3,
+              "Supply Pressure": {
+                "avg": 42.498000000000005,
+                "max": 43.44,
+                "min": 42.07
+              },
+              "T63": 10.03,
+              "T86": 13.65,
+              "Td": 8.0,
+              "step_count": 56,
+              "test_types": [
+                "SIG-EXT",
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": false,
+            "image_count": 7,
+            "metrics": {
+              "Average Error": 12.19,
+              "Average Hysteresis + Dead Band": 11.982,
+              "Max Friction": 9.185,
+              "Maximum Hysteresis + Dead Band": 14.27,
+              "Mean Friction": 9.185,
+              "Overshoot": 137.92,
+              "Response Time Close": 0.3,
+              "Response Time Open": 0.3,
+              "Supply Pressure": {
+                "avg": 42.498000000000005,
+                "max": 43.44,
+                "min": 42.07
+              },
+              "T63": 10.03,
+              "T86": 13.65,
+              "Td": 8.0,
+              "step_count": 56,
+              "test_types": [
+                "SIG-EXT",
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-004"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": false,
+            "image_count": 7,
+            "metrics": {
+              "Average Error": 52.83,
+              "Average Hysteresis + Dead Band": 25.085,
+              "Max Friction": 6.215,
+              "Maximum Hysteresis + Dead Band": 28.71,
+              "Mean Friction": 6.215,
+              "Overshoot": 120.74,
+              "Response Time Close": 1.6,
+              "Response Time Open": 1.7,
+              "Supply Pressure": {
+                "avg": 61.722,
+                "max": 61.95,
+                "min": 61.6
+              },
+              "T63": 11.87,
+              "T86": 12.29,
+              "Td": 9.4,
+              "step_count": 72,
+              "test_types": [
+                "SIG-EXT",
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": false,
+            "image_count": 7,
+            "metrics": {
+              "Average Error": 52.83,
+              "Average Hysteresis + Dead Band": 25.085,
+              "Max Friction": 6.215,
+              "Maximum Hysteresis + Dead Band": 28.71,
+              "Mean Friction": 6.215,
+              "Overshoot": 120.74,
+              "Response Time Close": 1.6,
+              "Response Time Open": 1.7,
+              "Supply Pressure": {
+                "avg": 61.722,
+                "max": 61.95,
+                "min": 61.6
+              },
+              "T63": 11.87,
+              "T86": 12.29,
+              "Td": 9.4,
+              "step_count": 72,
+              "test_types": [
+                "SIG-EXT",
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-005"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": false,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 4.74,
+              "Average Hysteresis + Dead Band": 1.35,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.66,
+              "Mean Friction": null,
+              "Overshoot": 130.48,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 61.151250000000005,
+                "max": 61.38,
+                "min": 60.93
+              },
+              "T63": 8.78,
+              "T86": 4.99,
+              "Td": 8.5,
+              "step_count": 48,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": false,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 4.74,
+              "Average Hysteresis + Dead Band": 1.35,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.66,
+              "Mean Friction": null,
+              "Overshoot": 130.48,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 61.151250000000005,
+                "max": 61.38,
+                "min": 60.93
+              },
+              "T63": 8.78,
+              "T86": 4.99,
+              "Td": 8.5,
+              "step_count": 48,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-006"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": false,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 4.37,
+              "Average Hysteresis + Dead Band": 2.6,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.77,
+              "Mean Friction": null,
+              "Overshoot": 65.86,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.52,
+                "max": 54.68,
+                "min": 54.31
+              },
+              "T63": 14.0,
+              "T86": 12.96,
+              "Td": 13.7,
+              "step_count": 24,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": false,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 4.37,
+              "Average Hysteresis + Dead Band": 2.6,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.77,
+              "Mean Friction": null,
+              "Overshoot": 65.86,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.52,
+                "max": 54.68,
+                "min": 54.31
+              },
+              "T63": 14.0,
+              "T86": 12.96,
+              "Td": 13.7,
+              "step_count": 24,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-007"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": false,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 4.58,
+              "Average Hysteresis + Dead Band": 3.28,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.925,
+              "Mean Friction": null,
+              "Overshoot": 171.96,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 60.46,
+                "max": 60.56,
+                "min": 60.4
+              },
+              "T63": 5.84,
+              "T86": 5.85,
+              "Td": 5.8,
+              "step_count": 56,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": false,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 4.58,
+              "Average Hysteresis + Dead Band": 3.28,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.925,
+              "Mean Friction": null,
+              "Overshoot": 171.96,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 60.46,
+                "max": 60.56,
+                "min": 60.4
+              },
+              "T63": 5.84,
+              "T86": 5.85,
+              "Td": 5.8,
+              "step_count": 56,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-008"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": false,
+            "image_count": 5,
+            "metrics": {
+              "Average Error": 5.06,
+              "Average Hysteresis + Dead Band": 5.43,
+              "Max Friction": 10.794,
+              "Maximum Hysteresis + Dead Band": 6.633,
+              "Mean Friction": 8.858,
+              "Overshoot": 178.04,
+              "Response Time Close": 0.9,
+              "Response Time Open": 0.7,
+              "Supply Pressure": {
+                "avg": 58.553999999999995,
+                "max": 58.83,
+                "min": 58.1
+              },
+              "T63": 12.2,
+              "T86": 14.0,
+              "Td": 11.6,
+              "step_count": 56,
+              "test_types": [
+                "SIG-EXT",
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": false,
+            "image_count": 5,
+            "metrics": {
+              "Average Error": 5.06,
+              "Average Hysteresis + Dead Band": 5.43,
+              "Max Friction": 10.794,
+              "Maximum Hysteresis + Dead Band": 6.633,
+              "Mean Friction": 8.858,
+              "Overshoot": 178.04,
+              "Response Time Close": 0.9,
+              "Response Time Open": 0.7,
+              "Supply Pressure": {
+                "avg": 58.553999999999995,
+                "max": 58.83,
+                "min": 58.1
+              },
+              "T63": 12.2,
+              "T86": 14.0,
+              "Td": 11.6,
+              "step_count": 56,
+              "test_types": [
+                "SIG-EXT",
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-009"
+        }
+      ]
+    },
+    {
+      "project_id": "PROJECT-003",
+      "valves": [
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 2.53,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": 2.17,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": 32.2,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 45.61,
+                "max": 50.0,
+                "min": 41.22
+              },
+              "T63": 0.66,
+              "T86": 0.9,
+              "Td": 0.37,
+              "step_count": 1,
+              "test_types": [
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 2.53,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": 2.17,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": 32.2,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 45.60999999999999,
+                "max": 50.0,
+                "min": 41.22
+              },
+              "T63": 0.66,
+              "T86": 0.9,
+              "Td": 0.37,
+              "step_count": 1,
+              "test_types": [
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-001"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.29,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": 47.85,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 1.13,
+              "T86": 1.59,
+              "Td": 0.25,
+              "step_count": 1,
+              "test_types": [
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.29,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": 47.85,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 1.13,
+              "T86": 1.59,
+              "Td": 0.25,
+              "step_count": 1,
+              "test_types": [
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-002"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 3.61,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": 38.31,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 1.95,
+              "T86": 2.48,
+              "Td": 0.76,
+              "step_count": 1,
+              "test_types": [
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 3.61,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": 38.31,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 1.95,
+              "T86": 2.48,
+              "Td": 0.76,
+              "step_count": 1,
+              "test_types": [
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-003"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 1.89,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": 653.84,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": 29.15,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 46.7,
+                "max": 50.0,
+                "min": 43.4
+              },
+              "T63": 1.1,
+              "T86": 1.61,
+              "Td": 0.25,
+              "step_count": 1,
+              "test_types": [
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 1.89,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": 653.84,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": 29.15,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 46.699999999999996,
+                "max": 50.0,
+                "min": 43.4
+              },
+              "T63": 1.1,
+              "T86": 1.61,
+              "Td": 0.25,
+              "step_count": 1,
+              "test_types": [
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-004"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 2.41,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": 14.07,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": 43.8,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 53.114999999999995,
+                "max": 56.23,
+                "min": 50.0
+              },
+              "T63": 2.09,
+              "T86": 2.87,
+              "Td": 1.0,
+              "step_count": 1,
+              "test_types": [
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 4,
+            "metrics": {
+              "Average Error": 2.41,
+              "Average Hysteresis + Dead Band": null,
+              "Max Friction": 14.07,
+              "Maximum Hysteresis + Dead Band": null,
+              "Mean Friction": null,
+              "Overshoot": 43.8,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 53.115,
+                "max": 56.23,
+                "min": 50.0
+              },
+              "T63": 2.09,
+              "T86": 2.87,
+              "Td": 1.0,
+              "step_count": 1,
+              "test_types": [
+                "SIG-POS",
+                "SIG-S",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-005"
+        }
+      ]
+    },
+    {
+      "project_id": "PROJECT-004",
+      "valves": [
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.0,
+              "Average Hysteresis + Dead Band": 1.62,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.87,
+              "Mean Friction": null,
+              "Overshoot": 0.31,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.31276509564467,
+                "max": 54.898234096827,
+                "min": 53.926481254237004
+              },
+              "T63": 2.99,
+              "T86": 6.44,
+              "Td": 0.3,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.0,
+              "Average Hysteresis + Dead Band": 1.62,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.87,
+              "Mean Friction": null,
+              "Overshoot": 0.31,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.31276509564467,
+                "max": 54.898234096827,
+                "min": 53.926481254237004
+              },
+              "T63": 2.99,
+              "T86": 6.44,
+              "Td": 0.3,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-001"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.06,
+              "Average Hysteresis + Dead Band": 0.39,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.48,
+              "Mean Friction": null,
+              "Overshoot": 0.68,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.28666666666667,
+                "max": 54.33,
+                "min": 54.22
+              },
+              "T63": 2.62,
+              "T86": 4.27,
+              "Td": 0.3,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.06,
+              "Average Hysteresis + Dead Band": 0.39,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.48,
+              "Mean Friction": null,
+              "Overshoot": 0.68,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.28666666666667,
+                "max": 54.33,
+                "min": 54.22
+              },
+              "T63": 2.62,
+              "T86": 4.27,
+              "Td": 0.3,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-002"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.97,
+              "Average Hysteresis + Dead Band": 0.93,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.19,
+              "Mean Friction": null,
+              "Overshoot": 0.26,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 55.406666666666666,
+                "max": 55.56,
+                "min": 55.3
+              },
+              "T63": 6.57,
+              "T86": 8.77,
+              "Td": 6.0,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.97,
+              "Average Hysteresis + Dead Band": 0.93,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.19,
+              "Mean Friction": null,
+              "Overshoot": 0.26,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 55.406666666666666,
+                "max": 55.56,
+                "min": 55.3
+              },
+              "T63": 6.57,
+              "T86": 8.77,
+              "Td": 6.0,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-003"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 2.22,
+              "Average Hysteresis + Dead Band": 5.23,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 7.28,
+              "Mean Friction": null,
+              "Overshoot": 0.19,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.58882025640033,
+                "max": 54.754646736504,
+                "min": 54.373197486353
+              },
+              "T63": 1.37,
+              "T86": 4.71,
+              "Td": 0.2,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 2.22,
+              "Average Hysteresis + Dead Band": 5.23,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 7.28,
+              "Mean Friction": null,
+              "Overshoot": 0.19,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.58882025640033,
+                "max": 54.754646736504,
+                "min": 54.373197486353
+              },
+              "T63": 1.37,
+              "T86": 4.71,
+              "Td": 0.2,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-004"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 2.5,
+              "Average Hysteresis + Dead Band": 0.52,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.01,
+              "Mean Friction": null,
+              "Overshoot": 0.08,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 55.49917379003066,
+                "max": 55.917849392858,
+                "min": 55.226019384029
+              },
+              "T63": 1.57,
+              "T86": 3.2,
+              "Td": 1.2,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 2.5,
+              "Average Hysteresis + Dead Band": 0.52,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.01,
+              "Mean Friction": null,
+              "Overshoot": 0.08,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 55.49917379003066,
+                "max": 55.917849392858,
+                "min": 55.226019384029
+              },
+              "T63": 1.57,
+              "T86": 3.2,
+              "Td": 1.2,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "valve_id": "VALVE-005"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.23,
+              "Average Hysteresis + Dead Band": 0.38,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.73,
+              "Mean Friction": null,
+              "Overshoot": 0.63,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 56.81514953009533,
+                "max": 57.469753186248,
+                "min": 56.450137890217
+              },
+              "T63": 0.93,
+              "T86": 3.38,
+              "Td": 0.3,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "shared": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.23,
+              "Average Hysteresis + Dead Band": 0.38,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.73,
+              "Mean Friction": null,
+              "Overshoot": 0.63,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 56.81514953009533,
+                "max": 57.469753186248,
+                "min": 56.450137890217
+              },
+              "T63": 0.93,
+              "T86": 3.38,
+              "Td": 0.3,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "valve_id": "VALVE-006"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.49,
+              "Average Hysteresis + Dead Band": 0.62,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.22,
+              "Mean Friction": null,
+              "Overshoot": 0.26,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 56.830136762991,
+                "max": 57.13036488003,
+                "min": 56.641587703980996
+              },
+              "T63": 2.42,
+              "T86": 3.86,
+              "Td": 0.8,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.49,
+              "Average Hysteresis + Dead Band": 0.62,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.22,
+              "Mean Friction": null,
+              "Overshoot": 0.26,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 56.830136762991,
+                "max": 57.13036488003,
+                "min": 56.641587703980996
+              },
+              "T63": 2.42,
+              "T86": 3.86,
+              "Td": 0.8,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "valve_id": "VALVE-007"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 3.74,
+              "Average Hysteresis + Dead Band": 0.5,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.9,
+              "Mean Friction": null,
+              "Overshoot": 0.23,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 56.779373554795995,
+                "max": 57.526317903951,
+                "min": 56.357313738089
+              },
+              "T63": 0.71,
+              "T86": 3.57,
+              "Td": 0.2,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 3.74,
+              "Average Hysteresis + Dead Band": 0.5,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.9,
+              "Mean Friction": null,
+              "Overshoot": 0.23,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 56.779373554795995,
+                "max": 57.526317903951,
+                "min": 56.357313738089
+              },
+              "T63": 0.71,
+              "T86": 3.57,
+              "Td": 0.2,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "valve_id": "VALVE-008"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.37,
+              "Average Hysteresis + Dead Band": 1.41,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.76,
+              "Mean Friction": null,
+              "Overshoot": 0.19,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 53.540197412829336,
+                "max": 53.685718609655,
+                "min": 53.453658229335005
+              },
+              "T63": 2.58,
+              "T86": 6.98,
+              "Td": 0.3,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.37,
+              "Average Hysteresis + Dead Band": 1.41,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.76,
+              "Mean Friction": null,
+              "Overshoot": 0.19,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 53.540197412829336,
+                "max": 53.685718609655,
+                "min": 53.453658229335005
+              },
+              "T63": 2.58,
+              "T86": 6.98,
+              "Td": 0.3,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-009"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.78,
+              "Average Hysteresis + Dead Band": 1.58,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.71,
+              "Mean Friction": null,
+              "Overshoot": 0.03,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.567548054871,
+                "max": 54.702433150932,
+                "min": 54.438464468317996
+              },
+              "T63": 1.91,
+              "T86": 5.15,
+              "Td": 0.4,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.78,
+              "Average Hysteresis + Dead Band": 1.58,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.71,
+              "Mean Friction": null,
+              "Overshoot": 0.03,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.567548054871,
+                "max": 54.702433150932,
+                "min": 54.438464468317996
+              },
+              "T63": 1.91,
+              "T86": 5.15,
+              "Td": 0.4,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-010"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.73,
+              "Average Hysteresis + Dead Band": 1.79,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.0,
+              "Mean Friction": null,
+              "Overshoot": 0.46,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.93981158163433,
+                "max": 55.198462213866,
+                "min": 54.702433150932
+              },
+              "T63": 2.86,
+              "T86": 7.13,
+              "Td": 0.3,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.73,
+              "Average Hysteresis + Dead Band": 1.79,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.0,
+              "Mean Friction": null,
+              "Overshoot": 0.46,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.93981158163433,
+                "max": 55.198462213866,
+                "min": 54.702433150932
+              },
+              "T63": 2.86,
+              "T86": 7.13,
+              "Td": 0.3,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-011"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.0,
+              "Average Hysteresis + Dead Band": 4.84,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 6.08,
+              "Mean Friction": null,
+              "Overshoot": 0.88,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.032842261883665,
+                "max": 54.186098804720004,
+                "min": 53.938084273253
+              },
+              "T63": 4.21,
+              "T86": 8.71,
+              "Td": 2.7,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.0,
+              "Average Hysteresis + Dead Band": 4.84,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 6.08,
+              "Mean Friction": null,
+              "Overshoot": 0.88,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.032842261883665,
+                "max": 54.186098804720004,
+                "min": 53.938084273253
+              },
+              "T63": 4.21,
+              "T86": 8.71,
+              "Td": 2.7,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-012"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 2.6,
+              "Average Hysteresis + Dead Band": 0.57,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.01,
+              "Mean Friction": null,
+              "Overshoot": 0.1,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.80057535344233,
+                "max": 55.025867306003,
+                "min": 54.670524848638
+              },
+              "T63": 4.46,
+              "T86": 5.6,
+              "Td": 4.4,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 2.6,
+              "Average Hysteresis + Dead Band": 0.57,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.01,
+              "Mean Friction": null,
+              "Overshoot": 0.1,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.80057535344233,
+                "max": 55.025867306003,
+                "min": 54.670524848638
+              },
+              "T63": 4.46,
+              "T86": 5.6,
+              "Td": 4.4,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "valve_id": "VALVE-013"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.1,
+              "Average Hysteresis + Dead Band": 0.39,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.6,
+              "Mean Friction": null,
+              "Overshoot": 0.15,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.474723902742994,
+                "max": 54.605257866673,
+                "min": 54.34564031619
+              },
+              "T63": 2.33,
+              "T86": 6.09,
+              "Td": 1.2,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.1,
+              "Average Hysteresis + Dead Band": 0.39,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.6,
+              "Mean Friction": null,
+              "Overshoot": 0.15,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.474723902742994,
+                "max": 54.605257866673,
+                "min": 54.34564031619
+              },
+              "T63": 2.33,
+              "T86": 6.09,
+              "Td": 1.2,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-014"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 2.26,
+              "Average Hysteresis + Dead Band": 0.49,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.97,
+              "Mean Friction": null,
+              "Overshoot": 0.1,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 56.479628896882666,
+                "max": 57.062197143311,
+                "min": 56.170215056455994
+              },
+              "T63": 5.83,
+              "T86": 7.01,
+              "Td": 5.5,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 2.26,
+              "Average Hysteresis + Dead Band": 0.49,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.97,
+              "Mean Friction": null,
+              "Overshoot": 0.1,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 56.479628896882666,
+                "max": 57.062197143311,
+                "min": 56.170215056455994
+              },
+              "T63": 5.83,
+              "T86": 7.01,
+              "Td": 5.5,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "valve_id": "VALVE-015"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.68,
+              "Average Hysteresis + Dead Band": 0.98,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.29,
+              "Mean Friction": null,
+              "Overshoot": 0.33,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 55.81825681297067,
+                "max": 56.2746422276,
+                "min": 55.485636934512
+              },
+              "T63": 0.9,
+              "T86": 2.93,
+              "Td": 0.6,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "shared": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.68,
+              "Average Hysteresis + Dead Band": 0.98,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.29,
+              "Mean Friction": null,
+              "Overshoot": 0.33,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 55.81825681297067,
+                "max": 56.2746422276,
+                "min": 55.485636934512
+              },
+              "T63": 0.9,
+              "T86": 2.93,
+              "Td": 0.6,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "valve_id": "VALVE-016"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 0.29,
+              "Average Hysteresis + Dead Band": 1.2,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.26,
+              "Mean Friction": null,
+              "Overshoot": 0.14,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 55.88207341755867,
+                "max": 56.302199397763,
+                "min": 55.66548372926
+              },
+              "T63": 0.92,
+              "T86": 2.53,
+              "Td": 0.4,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 0.29,
+              "Average Hysteresis + Dead Band": 1.2,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.26,
+              "Mean Friction": null,
+              "Overshoot": 0.14,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 55.88207341755867,
+                "max": 56.302199397763,
+                "min": 55.66548372926
+              },
+              "T63": 0.92,
+              "T86": 2.53,
+              "Td": 0.4,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-017"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 0.42,
+              "Average Hysteresis + Dead Band": 0.32,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.39,
+              "Mean Friction": null,
+              "Overshoot": 0.49,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 55.240523157799004,
+                "max": 55.449377500087,
+                "min": 55.005562022725
+              },
+              "T63": 0.99,
+              "T86": 1.82,
+              "Td": 0.4,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 0.42,
+              "Average Hysteresis + Dead Band": 0.32,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.39,
+              "Mean Friction": null,
+              "Overshoot": 0.49,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 55.240523157799004,
+                "max": 55.449377500087,
+                "min": 55.005562022725
+              },
+              "T63": 0.99,
+              "T86": 1.82,
+              "Td": 0.4,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-018"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 0.27,
+              "Average Hysteresis + Dead Band": 1.7,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.47,
+              "Mean Friction": null,
+              "Overshoot": 0.17,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 55.76072517701633,
+                "max": 56.26158883120701,
+                "min": 55.458079764349
+              },
+              "T63": 0.99,
+              "T86": 2.73,
+              "Td": 0.4,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "shared": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 0.27,
+              "Average Hysteresis + Dead Band": 1.7,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.47,
+              "Mean Friction": null,
+              "Overshoot": 0.17,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 55.76072517701633,
+                "max": 56.26158883120701,
+                "min": 55.458079764349
+              },
+              "T63": 0.99,
+              "T86": 2.73,
+              "Td": 0.4,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 1
+          },
+          "valve_id": "VALVE-019"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.5,
+              "Average Hysteresis + Dead Band": 0.75,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.92,
+              "Mean Friction": null,
+              "Overshoot": 0.12,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.908386738466,
+                "max": 55.497239953528,
+                "min": 54.589303715526
+              },
+              "T63": 0.95,
+              "T86": 2.41,
+              "Td": 0.7,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.5,
+              "Average Hysteresis + Dead Band": 0.75,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.92,
+              "Mean Friction": null,
+              "Overshoot": 0.12,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.908386738466,
+                "max": 55.497239953528,
+                "min": 54.589303715526
+              },
+              "T63": 0.95,
+              "T86": 2.41,
+              "Td": 0.7,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-020"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 1,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 0.99,
+              "Average Hysteresis + Dead Band": 0.39,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.42,
+              "Mean Friction": null,
+              "Overshoot": 0.1,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.92579126699,
+                "max": 55.217317119766996,
+                "min": 54.714036169948
+              },
+              "T63": 1.02,
+              "T86": 2.04,
+              "Td": 0.6,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 1,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 0.99,
+              "Average Hysteresis + Dead Band": 0.39,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.42,
+              "Mean Friction": null,
+              "Overshoot": 0.1,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.92579126699,
+                "max": 55.217317119766996,
+                "min": 54.714036169948
+              },
+              "T63": 1.02,
+              "T86": 2.04,
+              "Td": 0.6,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-021"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.2,
+              "Average Hysteresis + Dead Band": 35.76,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 40.21,
+              "Mean Friction": null,
+              "Overshoot": 0.6,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 55.21780057889267,
+                "max": 55.421820329924,
+                "min": 55.114340326000004
+              },
+              "T63": 0.96,
+              "T86": 1.77,
+              "Td": 0.6,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 1.2,
+              "Average Hysteresis + Dead Band": 35.76,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 40.21,
+              "Mean Friction": null,
+              "Overshoot": 0.6,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 55.21780057889267,
+                "max": 55.421820329924,
+                "min": 55.114340326000004
+              },
+              "T63": 0.96,
+              "T86": 1.77,
+              "Td": 0.6,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-022"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 1,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 0.57,
+              "Average Hysteresis + Dead Band": 0.4,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.59,
+              "Mean Friction": null,
+              "Overshoot": 0.42,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.903068688083664,
+                "max": 55.178156930588,
+                "min": 54.737242207979996
+              },
+              "T63": 1.44,
+              "T86": 2.11,
+              "Td": 1.1,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 1,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 0.57,
+              "Average Hysteresis + Dead Band": 0.4,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.59,
+              "Mean Friction": null,
+              "Overshoot": 0.42,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 54.903068688083664,
+                "max": 55.178156930588,
+                "min": 54.737242207979996
+              },
+              "T63": 1.44,
+              "T86": 2.11,
+              "Td": 1.1,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-023"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 0.34,
+              "Average Hysteresis + Dead Band": 1.44,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.09,
+              "Mean Friction": null,
+              "Overshoot": 0.15,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 45.990016247293,
+                "max": 46.074138135159004,
+                "min": 45.821772471561005
+              },
+              "T63": 1.0,
+              "T86": 2.53,
+              "Td": 0.4,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 3,
+            "metrics": {
+              "Average Error": 0.34,
+              "Average Hysteresis + Dead Band": 1.44,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.09,
+              "Mean Friction": null,
+              "Overshoot": 0.15,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": 45.990016247293,
+                "max": 46.074138135159004,
+                "min": 45.821772471561005
+              },
+              "T63": 1.0,
+              "T86": 2.53,
+              "Td": 0.4,
+              "step_count": 40,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-024"
+        }
+      ]
+    },
+    {
+      "project_id": "PROJECT-005",
+      "valves": [
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 40.1,
+              "Average Hysteresis + Dead Band": 0.135,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.014,
+              "Mean Friction": null,
+              "Overshoot": -45.08,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": 0.6,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 40.1,
+              "Average Hysteresis + Dead Band": 0.135,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.014,
+              "Mean Friction": null,
+              "Overshoot": -45.08,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": 0.6,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-001"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 27.62,
+              "Average Hysteresis + Dead Band": 1.971,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.376,
+              "Mean Friction": null,
+              "Overshoot": -27.84,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.5,
+              "T86": null,
+              "Td": 0.5,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 27.62,
+              "Average Hysteresis + Dead Band": 1.971,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.376,
+              "Mean Friction": null,
+              "Overshoot": -27.84,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.5,
+              "T86": null,
+              "Td": 0.5,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-002"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 24.62,
+              "Average Hysteresis + Dead Band": 3.346,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 4.261,
+              "Mean Friction": null,
+              "Overshoot": -23.85,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.3,
+              "T86": null,
+              "Td": 0.5,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 24.62,
+              "Average Hysteresis + Dead Band": 3.346,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 4.261,
+              "Mean Friction": null,
+              "Overshoot": -23.85,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.3,
+              "T86": null,
+              "Td": 0.5,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-003"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 5.61,
+              "Average Hysteresis + Dead Band": 0.475,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.009,
+              "Mean Friction": null,
+              "Overshoot": 0.46,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 2.4,
+              "T86": 3.4,
+              "Td": 0.5,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 5.61,
+              "Average Hysteresis + Dead Band": 0.475,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.009,
+              "Mean Friction": null,
+              "Overshoot": 0.46,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 2.4,
+              "T86": 3.4,
+              "Td": 0.5,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-004"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 15.37,
+              "Average Hysteresis + Dead Band": 0.562,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.034,
+              "Mean Friction": null,
+              "Overshoot": -9.67,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 2.9,
+              "T86": 3.9,
+              "Td": 0.9,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 15.37,
+              "Average Hysteresis + Dead Band": 0.562,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.034,
+              "Mean Friction": null,
+              "Overshoot": -9.67,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 2.9,
+              "T86": 3.9,
+              "Td": 0.9,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-005"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 33.1,
+              "Average Hysteresis + Dead Band": 1.066,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.009,
+              "Mean Friction": null,
+              "Overshoot": -34.16,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 4.0,
+              "T86": null,
+              "Td": 0.7,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 33.1,
+              "Average Hysteresis + Dead Band": 1.066,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.009,
+              "Mean Friction": null,
+              "Overshoot": -34.16,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 4.0,
+              "T86": null,
+              "Td": 0.7,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-006"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 28.7,
+              "Average Hysteresis + Dead Band": 0.718,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.048,
+              "Mean Friction": null,
+              "Overshoot": -28.08,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.6,
+              "T86": null,
+              "Td": 0.6,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 28.7,
+              "Average Hysteresis + Dead Band": 0.718,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.048,
+              "Mean Friction": null,
+              "Overshoot": -28.08,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 3.6,
+              "T86": null,
+              "Td": 0.6,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-007"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 1.9,
+              "Average Hysteresis + Dead Band": 0.334,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.953,
+              "Mean Friction": null,
+              "Overshoot": 0.19,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 2.1,
+              "T86": 2.8,
+              "Td": 0.5,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 1.9,
+              "Average Hysteresis + Dead Band": 0.334,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 1.953,
+              "Mean Friction": null,
+              "Overshoot": 0.19,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 2.1,
+              "T86": 2.8,
+              "Td": 0.5,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-008"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 2.4,
+              "Average Hysteresis + Dead Band": 0.199,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.419,
+              "Mean Friction": null,
+              "Overshoot": 0.13,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 1.0,
+              "T86": 1.3,
+              "Td": 0.5,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 2.4,
+              "Average Hysteresis + Dead Band": 0.199,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 2.419,
+              "Mean Friction": null,
+              "Overshoot": 0.13,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 1.0,
+              "T86": 1.3,
+              "Td": 0.5,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-009"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 0.89,
+              "Average Hysteresis + Dead Band": 0.251,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.867,
+              "Mean Friction": null,
+              "Overshoot": -0.46,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 1.1,
+              "T86": 1.4,
+              "Td": 0.5,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "shared": {
+            "algorithm_rating": 2,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 0.89,
+              "Average Hysteresis + Dead Band": 0.251,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 0.867,
+              "Mean Friction": null,
+              "Overshoot": -0.46,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 1.1,
+              "T86": 1.4,
+              "Td": 0.5,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 2
+          },
+          "valve_id": "VALVE-010"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 4.75,
+              "Average Hysteresis + Dead Band": 1.012,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.112,
+              "Mean Friction": null,
+              "Overshoot": -4.1,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 2.4,
+              "T86": 3.1,
+              "Td": 0.6,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "shared": {
+            "algorithm_rating": 3,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 4.75,
+              "Average Hysteresis + Dead Band": 1.012,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.112,
+              "Mean Friction": null,
+              "Overshoot": -4.1,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": 2.4,
+              "T86": 3.1,
+              "Td": 0.6,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 3
+          },
+          "valve_id": "VALVE-011"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 1,
+            "metrics": {
+              "Average Error": 19.67,
+              "Average Hysteresis + Dead Band": 1.448,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.112,
+              "Mean Friction": null,
+              "Overshoot": null,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": null,
+              "step_count": 2,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 1,
+            "metrics": {
+              "Average Error": 19.67,
+              "Average Hysteresis + Dead Band": 1.448,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.112,
+              "Mean Friction": null,
+              "Overshoot": null,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": null,
+              "step_count": 2,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-012"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 38.86,
+              "Average Hysteresis + Dead Band": 1.667,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.077,
+              "Mean Friction": null,
+              "Overshoot": -41.29,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": 0.9,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 38.86,
+              "Average Hysteresis + Dead Band": 1.667,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 3.077,
+              "Mean Friction": null,
+              "Overshoot": -41.29,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": 0.9,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-013"
+        },
+        {
+          "legacy": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 45.22,
+              "Average Hysteresis + Dead Band": 4.887,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 7.138,
+              "Mean Friction": null,
+              "Overshoot": -51.61,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": 0.5,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "shared": {
+            "algorithm_rating": 4,
+            "has_specification": true,
+            "image_count": 2,
+            "metrics": {
+              "Average Error": 45.22,
+              "Average Hysteresis + Dead Band": 4.887,
+              "Max Friction": null,
+              "Maximum Hysteresis + Dead Band": 7.138,
+              "Mean Friction": null,
+              "Overshoot": -51.61,
+              "Response Time Close": null,
+              "Response Time Open": null,
+              "Supply Pressure": {
+                "avg": null,
+                "max": null,
+                "min": null
+              },
+              "T63": null,
+              "T86": null,
+              "Td": 0.5,
+              "step_count": 3,
+              "test_types": [
+                "SIG-POS",
+                "STEP"
+              ]
+            },
+            "rating": 4
+          },
+          "valve_id": "VALVE-014"
+        }
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "valve_count": 68
+}

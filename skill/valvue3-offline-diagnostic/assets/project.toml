@@ -1,0 +1,33 @@
+[project]
+customer = __CUSTOMER__
+report_title = __REPORT_TITLE__
+report_date = __REPORT_DATE__
+
+[paths]
+raw = "raw"
+specs = "specs"
+inbound = "inbound"
+work = "work"
+output = "output"
+output_docx = "ValVue3-Offline-Diagnostic-Report.docx"
+output_pdf = "ValVue3-Offline-Diagnostic-Report.pdf"
+manual_interpretations = "work/manual_curve_interpretations.json"
+
+[features]
+include_specifications = true
+include_air_piping_pages = true
+include_accessory_pages = false
+include_data_insufficient_valves = true
+convert_pdf = true
+allow_loose_pdf_metrics = true
+include_signature_metrics = true
+
+[presentation]
+profile = "business_dashboard"
+brand_palette = "baker_hughes_deep_teal"
+rating_palette = "green_gold_orange_red_gray"
+spec_placement = "after_each_valve"
+include_field_context_overview = false
+include_overview_judgement = false
+include_overview_priority = false
+include_retest_recommendations = false
