@@ -6,6 +6,23 @@
 
 “离线”指阀门离线测试资料，模型诊断仍需要联网。当前目标为 Linux + Codex；Windows、macOS 与其他 Agent 未验证。匿名合成验收不能证明真实设备诊断准确性，也不能用于评级、投用或工程验收决策。
 
+## Docker 安装与下载分发
+
+新增 Linux x86_64 Docker 分发候选方案：程序与依赖装进镜像，CPU 文字/表格 OCR
+服务首次启动下载模型；客户资料、报告、模型缓存和使用者的 Codex 登录单独保存。
+WPS 需要使用者提供有权安装的官方安装包，再构建正式 PDF 层。
+
+```bash
+bash docker/run.sh setup
+bash docker/run.sh build
+bash docker/run.sh login
+bash docker/run.sh doctor --stage docx
+```
+
+完整步骤、宿主机隔离要求、真实 OCR 检查及给另一台电脑的打包/导入方式见
+[Docker 使用说明](docs/DOCKER.md)。本方案不改变原 Skill 的版本或审核门禁，
+Docker 构建和环境自检通过不代表真实模型诊断、WPS 正式交付已经验收。
+
 ## 目录
 
 - `skill/valvue3-offline-diagnostic/`：85 个原分发文件，逐字节保留，包括源码、测试、匿名回归夹具、依赖锁定文件与原清单
@@ -57,7 +74,7 @@ python "$TARGET/scripts/check_environment.py"
 
 - 不提交认证文件、API 密钥、客户原件、项目配置、现场反馈、模型输出、运行日志、报告或本机环境
 - 本仓库保留的是原包内已有的匿名测试夹具；真实链路验收的原始日志、输入和输出未纳入
-- 验收时单独使用的 Tesseract OCR 适配器不在原分发包内，本仓库也未附加；随包仅有 OCR 客户端与测试
+- 验收时单独使用的 Tesseract OCR 适配器不在原 Skill 分发包内；原包仅有 OCR 客户端与测试。Docker 方案另提供 CPU PaddleOCR 文字/表格适配服务
 - WPS 应用未安装验收，适用许可证未核实，正式 PDF 及分页视觉验收未完成
 - 原包引用的上游 `build_offline_skill_package.py` 未随包提供，本仓库未补造该构建器
 - 未添加许可证文件；依赖与第三方组件仍须核实各自授权

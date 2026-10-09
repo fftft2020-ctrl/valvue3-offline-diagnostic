@@ -1,0 +1,53 @@
+name: Docker distribution
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  packaging:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r skill/valvue3-offline-diagnostic/requirements-test.txt
+      - run: sudo apt-get update && sudo apt-get install -y bubblewrap
+      - run: python -m pytest -q docker/tests skill/valvue3-offline-diagnostic/scripts/tests
+      - run: python skill/valvue3-offline-diagnostic/scripts/validate_offline_regressions.py
+      - run: bash -n docker/*.sh
+      - run: bash docker/run.sh setup
+      - run: docker compose config --quiet
+      - run: docker compose -f compose.yaml -f compose.isolation.yaml config --quiet
+      - run: docker compose build diagnostic
+      - name: Image imports and immutable Skill
+        run: |
+          docker run --rm --entrypoint python valvue3-runtime:docker-v1 -c \
+            'import fitz,PIL,docx,docxcompose; import sys; sys.path.insert(0,"/workspace/.agents/skills/valvue3-offline-diagnostic/scripts"); from offline_engine.distribution import verify_package; print(verify_package())'
+      - name: Real nested isolation with disposable auth, no model request
+        run: |
+          docker run --rm --cap-drop ALL --security-opt no-new-privileges \
+            --security-opt seccomp=unconfined --security-opt apparmor=unconfined \
+            --entrypoint python valvue3-runtime:docker-v1 /usr/local/lib/valvue/isolation_smoke.py
+  real-ocr:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash docker/run.sh setup
+      - run: docker compose build ocr
+      - name: Download and load actual text/table models
+        run: docker compose up -d --wait --wait-timeout 1800 ocr
+      - name: Real anonymous image inference
+        run: docker compose exec -T ocr python /app/ocr_smoke.py
+      - name: Readiness and logs
+        if: always()
+        run: |
+          docker compose ps
+          docker compose logs --tail 150 ocr
+      - if: always()
+        run: docker compose down

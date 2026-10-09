@@ -1,0 +1,8 @@
+# Explicit Linux-only option for nested Bubblewrap user namespaces.
+# No privileged mode, host mounts, Docker socket or SYS_ADMIN capability.
+# This relaxes syscall/AppArmor filters for diagnostic only; read the Docker guide.
+services:
+  diagnostic:
+    security_opt:
+      - seccomp=unconfined
+      - apparmor=unconfined
