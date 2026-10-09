@@ -2,8 +2,8 @@
 # First supported platform: Linux x86_64. No credentials or customer data in images.
 FROM node:22-bookworm-slim AS codex
 ARG CODEX_VERSION=0.159.2
-RUN npm install -g "@openai/codex@${CODEX_VERSION}" \
-    && cp -a /usr/local/lib/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl /codex
+RUN npm install --prefix /opt/codex-build "@openai/codex@${CODEX_VERSION}" \
+    && cp -a /opt/codex-build/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl /codex
 
 FROM python:3.12-slim-bookworm AS runtime
 ARG TARGETARCH
