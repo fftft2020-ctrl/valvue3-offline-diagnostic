@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
+if [[ "$(id -u)" == 0 ]]; then
+  echo 'Run diagnostic as a non-root user; set LOCAL_UID/LOCAL_GID to your own UID/GID.' >&2
+  exit 1
+fi
 umask 077
 skill="${SKILL_DIR:-/workspace/.agents/skills/valvue3-offline-diagnostic}"
 command_name="${1:-shell}"

@@ -6,6 +6,7 @@ if (($#)); then shift; fi
 compose=(docker compose)
 case "$action" in
   setup)
+    if [[ "$(id -u)" == 0 ]]; then echo 'Run setup as your ordinary Linux user, not root.' >&2; exit 1; fi
     docker compose version >/dev/null
     if [[ ! -e .env ]]; then
       cp .env.example .env

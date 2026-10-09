@@ -4,7 +4,7 @@
 登录信息留在 `.runtime/codex/`，OCR 模型留在 `.runtime/models/`。
 删除、更新容器不会删除这些文件。`bash docker/run.sh stop` 也保留它们。
 
-**支持目标为 Linux x86_64 + Docker Engine + Compose v2。** Windows、macOS、
+**支持目标为 Linux x86_64 + Docker Engine + Compose v2.40 或更新版本。** Windows、macOS、
 ARM、GPU、嵌套容器平台尚未验收。先建议准备至少 16 GB 内存、4 个 CPU 核和
 20 GB 可用空间；这是起步配置建议，实际峰值需要测量。CPU 表格 OCR 可能较慢。
 Docker 标准化软件环境，宿主机仍须允许 Bubblewrap 使用用户命名空间。
@@ -91,9 +91,13 @@ COMPOSE_FILE=compose.yaml:compose.isolation.yaml
 ```
 
 再运行 `bash docker/run.sh doctor --stage diagnosis`。该配置仅对诊断容器解除
-seccomp/AppArmor 过滤，以允许内部 Bubblewrap 创建隔离空间；仍以普通用户运行、
+seccomp/AppArmor 过滤及默认系统路径屏蔽，以允许内部 Bubblewrap 创建隔离空间
+和自己的 `/proc`；仍以普通用户运行、
 移除全部额外能力、禁止获得新权限，没有 `privileged`、`SYS_ADMIN`、宿主根目录或
-Docker socket 挂载。它扩大了容器可用的系统调用范围，使用前须理解这一取舍。
+Docker socket 挂载。它扩大了系统调用和系统路径的可见范围，使用前须理解这一取舍，
+仅用于受信任的单用户环境，保持非 root 身份。不要为解决错误改成特权容器。
+`systempaths=unconfined` 的用途见 [Docker 官方说明](https://docs.docker.com/reference/cli/docker/container/run/)
+及 [BuildKit 嵌套隔离说明](https://github.com/moby/buildkit/blob/master/docs/rootless.md)。
 仍失败时换到允许用户命名空间的 Linux 主机，不能关闭原证据隔离或伪造检查结果。
 也可运行 `bash docker/run.sh isolation-smoke`，以临时假认证实测文件隔离和 CLI
 启动；它不读取你的真实认证、不请求模型，也不证明目标模型访问权。

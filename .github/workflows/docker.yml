@@ -33,6 +33,7 @@ jobs:
         run: |
           docker run --rm --cap-drop ALL --security-opt no-new-privileges \
             --security-opt seccomp=unconfined --security-opt apparmor=unconfined \
+            --security-opt systempaths=unconfined \
             --entrypoint python valvue3-runtime:docker-v1 /usr/local/lib/valvue/isolation_smoke.py
   real-ocr:
     runs-on: ubuntu-22.04

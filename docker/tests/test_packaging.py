@@ -141,6 +141,8 @@ def test_entrypoint_keeps_argument_boundaries_and_does_not_claim_display(tmp_pat
     fake_python = binary / "python"
     fake_python.write_text("#!/usr/bin/env bash\nprintf '%s\\n' \"$@\"\nprintf 'DISPLAY=%s\\n' \"${DISPLAY-unset}\"\n")
     fake_python.chmod(0o755)
+    (binary / "id").write_text("#!/usr/bin/env bash\necho 1000\n")
+    (binary / "id").chmod(0o755)
     import os
     env = {**os.environ, "PATH": f"{binary}:/usr/bin:/bin", "SKILL_DIR": "/safe/skill", "DISPLAY": ":99",
            "VALVUE_START_XVFB": "0"}
@@ -192,6 +194,8 @@ elif a[:2] in (["compose","up"],["compose","version"],["image","load"]):
 else: raise SystemExit("unexpected Docker command: "+repr(a))
 ''')
     docker.chmod(0o755)
+    (binary / "id").write_text("#!/usr/bin/env bash\necho 1000\n")
+    (binary / "id").chmod(0o755)
     env = {**os.environ, "PATH": f"{binary}:{os.environ['PATH']}"}
     subprocess.run(["bash", "docker/package.sh", "bundle"], cwd=source, env=env,
                    capture_output=True, text=True, check=True)
@@ -206,3 +210,16 @@ else: raise SystemExit("unexpected Docker command: "+repr(a))
                    capture_output=True, text=True, check=True)
     assert (bundle / ".runtime/models/model.bin").read_bytes() == b"anonymous model cache"
     assert list((bundle / ".runtime/codex").iterdir()) == []
+
+
+def test_entrypoint_refuses_root_before_launching_any_tool(tmp_path):
+    import os
+    identifier = tmp_path / "id"
+    identifier.write_text("#!/usr/bin/env bash\necho 0\n")
+    identifier.chmod(0o755)
+    result = subprocess.run(["bash", str(ROOT / "docker/entrypoint.sh"), "report", "--help"],
+                            env={**os.environ, "PATH": f"{tmp_path}:/usr/bin:/bin"},
+                            text=True, capture_output=True)
+    assert result.returncode == 1
+    assert "non-root" in result.stderr
+    assert result.stdout == ""
