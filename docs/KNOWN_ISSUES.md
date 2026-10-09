@@ -12,7 +12,9 @@
 
 位置：[`business_report.py`，`specification_supplement_rows`](../skill/valvue3-offline-diagnostic/scripts/offline_engine/business_report.py)。当执行机构型号缺失时，现有代码会尝试从阀门型号的两位前缀回填。
 
-匿名样例参数中的 `actuator.model`、`actuator.model_full`、`actuator.model_display` 都为 missing，规格页只有阀门型号 `88-21124`，纯数据 DOCX 却显示执行机构型号/尺寸 `88/-`。该推导对样例设备没有独立依据，因此不能当作已确认型号。后续需决定是否移除回填或显式标明推断，并补充有业务依据的验证；当前代码保持原样。
+匿名样例参数中的 `actuator.model`、`actuator.model_full`、`actuator.model_display` 都为 missing，规格页只有阀门型号 `88-21124`，0.1.1 纯数据 DOCX 却显示执行机构型号/尺寸 `88/-`。该推导对样例设备没有独立依据，因此不能当作已确认型号。
+
+本开发分支已移除该回填：无型号时显示 `-`，明确提供的执行机构型号和尺寸继续保留。新增 6 项回归，并用合成 PDF、devdata、规格页和内部 DOCX 验证缺失状态。此修复尚未发布为新分发版，不代表完整模型诊断已通过；详见 [独立测试记录](INDEPENDENT_VALIDATION.md)。
 
 ## 3. OCR 与规格模板覆盖有限
 

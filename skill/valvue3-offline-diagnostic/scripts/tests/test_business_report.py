@@ -5,6 +5,7 @@ from io import BytesIO
 from pathlib import Path
 from zipfile import ZipFile
 
+import pytest
 from docx import Document
 from docx.oxml.ns import qn
 from PIL import Image
@@ -17,6 +18,58 @@ from offline_engine.visual_review import CurveInterpretation
 PNG_1X1 = base64.b64decode(
     "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
 )
+
+
+@pytest.mark.parametrize("actuator_model", [None, "", "-", "未提供"])
+def test_missing_actuator_model_is_not_inferred_from_valve_model(actuator_model):
+    valve = generator.ValveReport(
+        folder="FV-SYNTHETIC",
+        spec_fields={"model_no": "88-21124", "actuator_model": actuator_model},
+    )
+
+    rows = dict(business_report.specification_supplement_rows(valve))
+
+    assert rows["执行机构型号 / 尺寸"] == "- / -"
+    assert valve.spec_fields["actuator_model"] == actuator_model
+
+
+def test_report_preserves_explicit_actuator_model_and_size():
+    valve = generator.ValveReport(
+        folder="FV-SYNTHETIC",
+        spec_fields={
+            "model_no": "88-21124",
+            "actuator_model": "87",
+            "actuator_size": "#10",
+        },
+    )
+    rows = dict(business_report.specification_supplement_rows(valve))
+    assert rows["执行机构型号 / 尺寸"] == "87 / #10"
+
+
+def test_generated_docx_keeps_missing_actuator_unknown(tmp_path):
+    valve = generator.ValveReport(
+        folder="FV-SYNTHETIC",
+        valve_model="88-21124",
+        spec_fields={"model_no": "88-21124", "actuator_size": "#10"},
+    )
+    output = tmp_path / "synthetic.docx"
+    business_report.generate_business_dashboard_docx(
+        [valve],
+        **_prepared_report_text([valve]),
+        output_path=output,
+        project_name="SYNTHETIC",
+        report_name="SYNTHETIC regression",
+        report_date="",
+        unit_name="SYNTHETIC",
+    )
+    document = Document(output)
+    rows = [
+        [cell.text for cell in row.cells]
+        for table in document.tables for row in table.rows
+    ]
+    actuator_rows = [row for row in rows if row[0] == "执行机构型号 / 尺寸"]
+    assert actuator_rows
+    assert all(row[1] == "- / #10" for row in actuator_rows)
 
 
 def _prepared_report_text(valves):

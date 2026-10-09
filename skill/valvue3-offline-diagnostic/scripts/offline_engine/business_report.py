@@ -1393,9 +1393,6 @@ def specification_supplement_rows(valve: Any) -> list[tuple[str, str]]:
     if re.fullmatch(r"0\.001%\s*/\s*Max\.?\s*Diff\.?\s*Pr\.?", leakage_class, re.I):
         leakage_class = "V"
     actuator_model = display_specification_value(fields.get("actuator_model"))
-    if actuator_model == "-":
-        match = re.fullmatch(r"\s*([0-9]{2})-[0-9A-Z]{5,}\s*", str(fields.get("model_no") or ""), re.I)
-        actuator_model = match.group(1) if match else "-"
     candidates = [
         ("端连接 / 额定 Cv", fields.get("end_connection"), fields.get("rated_cv")),
         ("流向 / 泄漏等级", fields.get("flow_action"), leakage_class),

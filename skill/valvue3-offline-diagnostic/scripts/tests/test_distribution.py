@@ -46,6 +46,11 @@ def test_environment_distinguishes_prerequisites_from_actual_execution(tmp_path,
     monkeypatch.setattr(run_metered_codex, "_codex_executable", lambda: "/usr/bin/codex")
     requirements = dict(line.split("==") for line in (check_environment.SKILL_DIR / "requirements.txt").read_text().splitlines())
     monkeypatch.setattr(check_environment, "version", lambda name: requirements[name])
+    # This test isolates prerequisite reporting from release-package integrity.
+    # Real source edits must still fail the unchanged release manifest check.
+    monkeypatch.setattr(check_environment, "verify_package", lambda: {
+        "status": "verified", "version": "test", "file_count": 84,
+    })
     commands = []
 
     def command(args):
@@ -72,3 +77,11 @@ def test_environment_distinguishes_prerequisites_from_actual_execution(tmp_path,
     assert result["stages"]["docx"]["status"] == "prerequisites_available"
     assert result["stages"]["diagnosis"]["status"] == "blocked"
     assert result["stages"]["wps_pdf"]["status"] == "blocked"
+
+    def modified_package():
+        raise ValueError("package files differ from release manifest")
+
+    monkeypatch.setattr(check_environment, "verify_package", modified_package)
+    result = check_environment.check_environment()
+    assert result["checks"]["package"]["status"] == "missing"
+    assert all("package" in stage["missing"] for stage in result["stages"].values())
