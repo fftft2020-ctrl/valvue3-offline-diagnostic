@@ -71,3 +71,7 @@ temp/
 *.pdf
 *.zip
 *.tar.gz
+
+# Docker runtime state and proprietary installers
+.runtime/
+*.deb
