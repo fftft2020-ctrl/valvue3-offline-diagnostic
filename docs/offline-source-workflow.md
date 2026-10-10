@@ -1,30 +1,25 @@
-# 离线诊断只维护一个版本
+# 离线诊断只维护一个 Skill 版本
 
-当前统一源码版本：0.1.3（开发候选，未正式发布）。
+当前版本为 0.1.3 开发候选。用户于 2026-10-10 选择只分享 Skill，停止以 Docker 作为当前部署和分发入口。
 
-以后固定按这一条路走：**本机改代码 → 本机测试 → 明确授权后同步 GitHub → 重新打包分发**。客户资料一直留在本机；你无需自己整理试验分支。当前验收结果见 [验收记录](ACCEPTANCE.md)。
+固定流程：**修改本机 Skill → 测试 → 生成 Skill ZIP → 接收方安装依赖并使用自己的 Codex 账号**。GitHub 私有仓库是同一源码的备份和分享入口；同步仍需明确 Git 授权，不能把线上和本机当作两套独立开发版本。
 
-- 日常只修改当前工作区的 `.agents/skills/valvue3-offline-diagnostic/`；Docker、构建器与匿名回归文件也在当前工作区维护。
-- GitHub 私有仓库 `fftft2020-ctrl/valvue3-offline-diagnostic` 保存从本机导出的同一版本，不把两个地方当作独立开发入口。
-- 客户项目仍在 `离线诊断/projects/`。原始资料、参数批准、冻结包、反馈和报告不进入 GitHub、镜像或源码包。
-- 安装副本、ZIP 和 Docker 镜像都是生成产物，不在其中直接修源码。旧诊断引用的旧版本必须保留。
+- 唯一维护源码在当前工作区 `.agents/skills/valvue3-offline-diagnostic/`，共用构建器、匿名测试和经验。
+- 客户项目只在 `离线诊断/projects/` 保存资料、配置、反馈、批准、冻结和报告，不进入 ZIP 或共享 Git。
+- 安装副本与 ZIP 由源码生成，不在副本中修改。保留被旧诊断引用的版本和证据。
+- Docker 部署源码、根目录配置和旧工作流已撤出当前工作区入口，留在本机忽略的恢复档案；当前源码导出和 CI 只有 Skill。旧镜像、模型缓存、认证和验收记录继续保留，不清理其他项目服务。
 
-## 每次修改后的顺序
-
-1. 在维护源码中修改，保留不相关改动。
-2. 运行 `python -m pytest -q` 与 `python scripts/validate_offline_regressions.py`。
-3. 若改变模型接入或报告合同，在已授权的目标项目补做相应实际链路验证；自动测试不能代替原件实读、诊断质量或 WPS 交付。
-4. 用下面的命令导出到一个新目录，检查副本和安装包。
-5. 用户明确授权提交/推送/合并后，只同步离线白名单文件到 GitHub。不要给整个业务工作区直接添加离线仓库远端或上传其历史。
-6. GitHub 主分支整合后，停止维护被覆盖的试验分支；关闭 PR、删除分支分别按已获授权处理。
+## 修改后的验证与打包
 
 ```bash
-python scripts/build_offline_skill_package.py --repository-output .scratch/offline-release-0.1.3
-python scripts/build_offline_skill_package.py --output .scratch/valvue3-offline-diagnostic-0.1.3.zip
+python -m pytest -q tests .agents/skills/valvue3-offline-diagnostic/scripts/tests
+python scripts/validate_offline_regressions.py
+python scripts/build_offline_skill_package.py --output .scratch/valvue3-offline-diagnostic-new.zip
+python scripts/build_offline_skill_package.py --repository-output .scratch/offline-skill-source-new
 ```
 
-两个命令都拒绝覆盖已有目标。导出只复制显式白名单，不包含 Git 历史、在线代码、客户资料或登录。目录结构与维护源码相同，独立副本可以运行相同测试和构建命令；Docker 构建时再生成并核对 Skill 安装清单。
+两个导出命令都要求新路径。ZIP 可直接分享；源码副本供 GitHub 同步，只包含 Skill、维护文档、构建器、匿名测试和 Skill CI，不包含 Docker 部署文件。先核对清单和解包结果，再在接收环境检查前置条件；实际模型和正式 PDF 验收按任务需要执行，自动测试不能代替。
 
-源码测试通过后，完整发布还需要在目标机器实际验证模型读取/诊断、WPS 导出与视觉验收，并在第二台干净 Linux 机器验证安装。未具备相应环境时保留候选状态，不以测试数量代替完整验收。
+只有用户明确授权提交/推送/合并后，才同步该白名单源码到 GitHub。用户于2026-10-10已明确授权取消Docker配置并将远端改为Skill；同步须核对新导出与旧树差异，仅提交该离线仓库的文件，不提交整个本机业务工作区。
 
-必须保留维护源码、锁定依赖、匿名夹具、构建器，以及被旧诊断引用的版本与项目证据。无引用的导出副本和镜像可在明确授权后清理；它们分别由上述导出命令和 `bash docker/run.sh build` 重建，镜像重建需下载依赖，耗时和网络成本高于源码导出。
+成果为 Skill ZIP、安装说明和源码导出。必须保留维护源码、依赖锁定文件、匿名夹具、构建器及被旧诊断引用的版本和项目证据。无引用的导出/解包副本可在授权后清理，ZIP 和源码副本可用上述命令重建；真实诊断重跑会消耗额度且结果可能不同，冻结证据不能以重跑替代。旧 Docker 大文件清理候选与重建代价继续沿用已有工程记录，当前不删除。

@@ -105,7 +105,7 @@ python .agents/skills/valvue3-offline-diagnostic/scripts/run_metered_codex.py ru
   --prompt-file "<项目绝对路径>/work/evidence-extraction/codex-review-prompt.md"
 ```
 
-由主 Agent 串行发起 `gpt-6-sol`、`reasoning_effort=high` 的计量调用，不使用子代理编排。使用空白工作目录并忽略用户配置和规则，避免重新加载客户项目的 Skill 和运行流程；空白目录本身不构成文件读取隔离。默认为当前 `review-queue.json` 中每个不同的 `image_path` 各附加一次，与完整提示文件一次执行。图片过多时可按图片分批，但每批提示只能包含已附加图片的队列项，同一张图的所有字段必须同批处理；最终 `codex-review-results.json` 中的 `reviews` 必须合并为无重复 `review_id` 的单一数组。
+由主 Agent 串行发起 `gpt-6.1-sol`、`reasoning_effort=high` 的计量调用，不使用子代理编排。使用空白工作目录并忽略用户配置和规则，避免重新加载客户项目的 Skill 和运行流程；空白目录本身不构成文件读取隔离。默认为当前 `review-queue.json` 中每个不同的 `image_path` 各附加一次，与完整提示文件一次执行。图片过多时可按图片分批，但每批提示只能包含已附加图片的队列项，同一张图的所有字段必须同批处理；最终 `codex-review-results.json` 中的 `reviews` 必须合并为无重复 `review_id` 的单一数组。
 
 Codex 只能确认页面上直接可见的文字和表格归属，不得推断缺失值、解释曲线形状或形成诊断。看不清时返回 `unresolved`。来源值冲突不由 Codex 自动消解。
 

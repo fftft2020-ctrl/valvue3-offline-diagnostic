@@ -72,11 +72,11 @@ def check_environment() -> dict[str, object]:
     cached = False
     try:
         catalog = json.loads((auth_root / "models_cache.json").read_text(encoding="utf-8"))
-        cached = any(model.get("slug") == "gpt-6-sol" for model in catalog.get("models", []) if isinstance(model, dict))
+        cached = any(model.get("slug") == "gpt-6.1-sol" for model in catalog.get("models", []) if isinstance(model, dict))
     except (OSError, ValueError, AttributeError, TypeError):
         pass
     checks["model_access"] = {"status": "unverified", "cached_model_present": cached,
-                              "detail": "未请求模型；缓存出现 gpt-6-sol 不证明当前访问权限", "affects": ["diagnosis"]}
+                              "detail": "未请求模型；缓存出现 gpt-6.1-sol 不证明当前访问权限", "affects": ["diagnosis"]}
     if codex and shutil.which("bwrap") and (auth_root / "auth.json").is_file():
         try:
             with tempfile.TemporaryDirectory(prefix="valvue-env-") as directory:

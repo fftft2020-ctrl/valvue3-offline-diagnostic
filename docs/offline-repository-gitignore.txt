@@ -72,6 +72,6 @@ temp/
 *.zip
 *.tar.gz
 
-# Docker runtime state and proprietary installers
+# 本机状态与专有安装器
 .runtime/
 *.deb

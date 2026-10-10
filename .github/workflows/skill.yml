@@ -1,0 +1,28 @@
+name: Skill distribution
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  packaging:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r .agents/skills/valvue3-offline-diagnostic/requirements-test.txt
+      - name: Install tools used by anonymous fixtures
+        run: sudo apt-get update && sudo apt-get install -y bubblewrap fonts-noto-cjk fonts-dejavu-core poppler-utils curl
+      - run: python -m pytest -q tests .agents/skills/valvue3-offline-diagnostic/scripts/tests
+      - run: python scripts/validate_offline_regressions.py
+      - name: Build standalone Skill
+        run: python scripts/build_offline_skill_package.py --output .scratch/valvue3-offline-diagnostic.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: valvue3-offline-diagnostic-skill
+          path: .scratch/valvue3-offline-diagnostic.zip

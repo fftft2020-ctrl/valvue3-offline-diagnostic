@@ -414,7 +414,7 @@ rejected rather than repaired under the old approval.
 
 Stage 3 follows `references/integrated-valve-diagnosis.md`. The main Agent
 operates and checks serial model calls directly, without subagents. Each valve
-uses one `gpt-6-sol` high `codex exec` call, as enforced by the current
+uses one `gpt-6.1-sol` high `codex exec` call, as enforced by the current
 submission code; this does not set the parent orchestration model. Every curve and technical
 page for that valve is attached to the same call that reads the complete evidence
 request. The tool validates model provenance, image SHA-256 coverage, observation versus

@@ -45,9 +45,22 @@ python -m pip install -r \
 - `libreoffice` 或 `soffice`：需要生成内部自动检查 PDF 时使用。现有 `--skip-pdf` 或 `convert_pdf=false` 可只生成 DOCX；该模式不因缺少 LibreOffice 停止，但也不代表正式 PDF 已交付。正式 PDF 仍须经过 WPS 导出和完整验收。
 - WPS 文字：唯一报告入口的 `--export-wps-docx` 使用 `scripts/export_wps_pdf.py` 导出正式 PDF；WPS 应用本身不由 Skill 自动安装。
 
-本机 OCR 是可选外部服务，不包含在 Skill ZIP 中；Docker 源码提供可选 OCR 镜像。未启用时通过大模型实际读图并按参数复核/确认路径写回事实，脚本保留识别失败和缺口，不保证扫描件自动完整提取。服务协议见安装合同及引擎代码。WPS 运行还需可用显示环境。模型调用保留接收环境显式设置的标准代理变量，不强制本机端口，不修改系统代理。
+本机 OCR 是可选外部服务，不包含在 Skill ZIP 中；当前仅分发 Skill，不部署 Docker；启用 OCR 时由接收方提供兼容本机服务。未启用时通过大模型实际读图并按参数复核/确认路径写回事实，脚本保留识别失败和缺口，不保证扫描件自动完整提取。服务协议见安装合同及引擎代码。WPS 运行还需可用显示环境。模型调用保留接收环境显式设置的标准代理变量，不强制本机端口，不修改系统代理。
 
 新项目目录只保存输入、配置、人工反馈来源、中间状态和输出。不得将 Python 环境、共享引擎或通用经验复制到客户项目中。
+
+## 原生 Linux 安装补充
+
+当前分享方式只用 Skill ZIP。Python 环境在接收方机器创建；Codex CLI 单独安装并使用自己的账号。现有 CLI 可沿用，以自检确认必需参数；当前 Docker 历史安装所用的 CLI 为 0.159.2，不要求在 Skill 使用时安装 Docker 或构建镜像。
+
+Ubuntu/Debian 上可由接收方安装基础系统工具：
+
+```bash
+sudo apt-get update
+sudo apt-get install -y python3-venv bubblewrap poppler-utils fonts-noto-cjk fonts-dejavu-core
+```
+
+这不包含 Codex、WPS 或 OCR。系统若禁止用户命名空间，安装 Bubblewrap 仍可能不够，应针对该机策略排查，不关闭全局限制或跳过隔离。显示和 WPS 仅在正式 PDF 阶段需要；LibreOffice 是内部检查选项。
 
 ## Python 隔离兼容性（0.1.1）
 

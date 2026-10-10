@@ -417,8 +417,8 @@ def _isolated_run(
 
 
 def _run(args: argparse.Namespace) -> int:
-    if (args.model, args.reasoning_effort) != ("gpt-6-sol", "high"):
-        raise ValueError("new diagnostic calls require gpt-6-sol / high; no automatic fallback")
+    if (args.model, args.reasoning_effort) != ("gpt-6.1-sol", "high"):
+        raise ValueError("new diagnostic calls require gpt-6.1-sol / high; no automatic fallback")
     if args.stage in {"integrated_diagnosis", "independent_replay"} and not getattr(args, "read_allowlist", None):
         args.read_allowlist = args.prompt_file.parent / "allowed_reads.json"
         _require_file(args.read_allowlist, "diagnostic read allowlist")
@@ -574,7 +574,7 @@ def _build_parser() -> argparse.ArgumentParser:
     run.add_argument("--stage", required=True)
     run.add_argument("--call-id", required=True)
     run.add_argument("--valve-tag")
-    run.add_argument("--model", default="gpt-6-sol", choices=("gpt-6-sol",))
+    run.add_argument("--model", default="gpt-6.1-sol", choices=("gpt-6.1-sol",))
     run.add_argument("--reasoning-effort", default="high", choices=("high",))
     run.add_argument("--prompt-file", type=Path, required=True)
     run.add_argument("--image", type=Path, action="append", default=[])

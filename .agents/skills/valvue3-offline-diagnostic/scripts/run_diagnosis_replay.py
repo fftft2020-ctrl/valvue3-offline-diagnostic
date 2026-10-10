@@ -58,8 +58,8 @@ def code_hashes() -> dict[str, str]:
 
 def prepare(args) -> None:
     plan = read(args.plan)
-    if (plan["model"], plan["reasoning_effort"]) != ("gpt-6-sol", "high"):
-        raise ValueError("new replays require gpt-6-sol / high")
+    if (plan["model"], plan["reasoning_effort"]) != ("gpt-6.1-sol", "high"):
+        raise ValueError("new replays require gpt-6.1-sol / high")
     if not re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9._-]{0,55}", args.round):
         raise ValueError("invalid round identifier")
     project = Path(plan["project_root"]).resolve()

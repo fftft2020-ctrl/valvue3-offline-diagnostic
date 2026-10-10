@@ -178,7 +178,7 @@ python .agents/skills/valvue3-offline-diagnostic/scripts/formal_diagnosis_tools/
   --parent-run "<父版本或 none>" \
   --revision-reason "<创建或修订原因>" \
   --report-period "<报告批次键>" \
-  --model gpt-6-sol --reasoning-effort high
+  --model gpt-6.1-sol --reasoning-effort high
 ```
 
 进入正式诊断前必须用机器可读矩阵证明逐阀字段完整：Sequencer 必须保留完整时间窗、定位器/运行快照、五个累计运行字段、活动与历史故障、完整任务表，以及 Run Ramp 回差/死区/线性度各自最大、平均、最小值；Specification 和气路页则按 `source_sha256 + one_based_page_number` 核对物理身份。源中有标签而解析为空、正式证据缺字段或报告未展示都是门禁失败。正式模型请求不得包含旧报告评级、旧诊断或 `analysis_summary.final_rating`。
@@ -187,7 +187,7 @@ python .agents/skills/valvue3-offline-diagnostic/scripts/formal_diagnosis_tools/
 
 `--prepare-ocr` 只是排障或兼容旧自动化时单独准备缓存的底层命令，标准新项目不需要先运行它。
 
-`prepare-project` 以 `--report-period` 选择本次批次，并按该批次核验资料与参数门禁。默认读取该批次工作目录的摘要；显式 `--analysis-summary` 若指向另一路径，必须位于项目 `work/` 内，且相邻 `analysis_summary.source.json` 须绑定项目绝对路径、批次键和摘要 SHA-256。新运行模型固定为 `gpt-6-sol` high；旧运行保留原清单约定。
+`prepare-project` 以 `--report-period` 选择本次批次，并按该批次核验资料与参数门禁。默认读取该批次工作目录的摘要；显式 `--analysis-summary` 若指向另一路径，必须位于项目 `work/` 内，且相邻 `analysis_summary.source.json` 须绑定项目绝对路径、批次键和摘要 SHA-256。新运行模型固定为 `gpt-6.1-sol` high；旧运行保留原清单约定。
 
 初始化运行后，每台阀门先生成一体化模型请求：
 
@@ -197,7 +197,7 @@ python .agents/skills/valvue3-offline-diagnostic/scripts/formal_diagnosis_tools/
   --run-dir "<运行根目录>/<阀门位号>"
 ```
 
-按[第三阶段单阀一体化模型合同](integrated-valve-diagnosis.md)，主 Agent 直接逐阀串行执行，不使用子代理。每阀通过 `run_metered_codex.py` 执行一次 `gpt-6-sol`、`reasoning_effort=high` 的 `codex exec`，将完整证据请求与该阀全部曲线、技术页一次提交，并同时输出逐图客观观察、逐图工程判读、整阀评级与综合结论；不得另设单张读图环节，也不增加强制单阀探针。再提交该模型的原始结果：
+按[第三阶段单阀一体化模型合同](integrated-valve-diagnosis.md)，主 Agent 直接逐阀串行执行，不使用子代理。每阀通过 `run_metered_codex.py` 执行一次 `gpt-6.1-sol`、`reasoning_effort=high` 的 `codex exec`，将完整证据请求与该阀全部曲线、技术页一次提交，并同时输出逐图客观观察、逐图工程判读、整阀评级与综合结论；不得另设单张读图环节，也不增加强制单阀探针。再提交该模型的原始结果：
 
 ```bash
 python .agents/skills/valvue3-offline-diagnostic/scripts/formal_diagnosis_tools/single_valve_workflow.py \

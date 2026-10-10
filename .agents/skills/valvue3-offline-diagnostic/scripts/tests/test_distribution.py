@@ -38,7 +38,7 @@ def test_environment_distinguishes_prerequisites_from_actual_execution(tmp_path,
     auth = tmp_path / "auth"
     auth.mkdir()
     (auth / "auth.json").write_text('{"secret":"must not appear"}')
-    (auth / "models_cache.json").write_text(json.dumps({"models": [{"slug": "gpt-6-sol"}]}))
+    (auth / "models_cache.json").write_text(json.dumps({"models": [{"slug": "gpt-6.1-sol"}]}))
     monkeypatch.setenv("CODEX_HOME", str(auth))
     monkeypatch.setenv("DISPLAY", ":0")
     monkeypatch.setattr(check_environment.sys, "platform", "linux")

@@ -107,7 +107,7 @@ def test_metered_runner_records_command_result(
         stage="delivery_visual_review",
         call_id="delivery-review-1",
         valve_tag=None,
-        model="gpt-6-sol",
+        model="gpt-6.1-sol",
         reasoning_effort="high",
         prompt_file=prompt,
         image=[image],
@@ -139,6 +139,8 @@ def test_metered_runner_records_command_result(
     result = run_metered_codex._run(args)
 
     assert result == returncode
+    assert observed["command"][observed["command"].index("-m") + 1] == "gpt-6.1-sol"
+    assert 'model_reasoning_effort="high"' in observed["command"]
     assert observed["kwargs"]["env"]["ALL_PROXY"] == "socks5://127.0.0.1:12345"
     assert observed["kwargs"]["env"]["HTTPS_PROXY"] == "http://127.0.0.1:23456"
     assert "--ignore-user-config" in observed["command"]
@@ -147,6 +149,7 @@ def test_metered_runner_records_command_result(
     )
     summary = json.loads((project / "work/workflow-summary.json").read_text())
     record = json.loads((project / "work/model-calls/ledger.jsonl").read_text())
+    assert (record["model"], record["reasoning_effort"]) == ("gpt-6.1-sol", "high")
     assert record["skill_runtime"] == run_metered_codex.runtime_identity()
     assert summary["tokens_used"] == 2468
     assert summary["stages"][args.stage]["failed"] == (returncode != 0)
@@ -225,11 +228,12 @@ def test_evidence_namespace_hides_answers_and_keeps_inputs_read_only(
     assert answer.read_text() == "excluded answer"
 
 
-def test_new_diagnoses_cannot_downgrade_or_omit_isolation(tmp_path: Path) -> None:
-    args = Namespace(model="gpt-5.6-sol", reasoning_effort="medium")
-    with pytest.raises(ValueError, match="gpt-6-sol / high"):
+@pytest.mark.parametrize("model,effort", [("gpt-5.6-sol", "medium"), ("gpt-6-sol", "high"), ("gpt-6.1-sol", "medium")])
+def test_new_diagnoses_cannot_downgrade_or_omit_isolation(tmp_path: Path, model: str, effort: str) -> None:
+    args = Namespace(model=model, reasoning_effort=effort)
+    with pytest.raises(ValueError, match="gpt-6.1-sol / high"):
         run_metered_codex._run(args)
-    args = Namespace(model="gpt-6-sol", reasoning_effort="high", stage="independent_replay",
+    args = Namespace(model="gpt-6.1-sol", reasoning_effort="high", stage="independent_replay",
                      read_allowlist=None, prompt_file=tmp_path / "prompt.md")
     with pytest.raises(ValueError, match="diagnostic read allowlist"):
         run_metered_codex._run(args)

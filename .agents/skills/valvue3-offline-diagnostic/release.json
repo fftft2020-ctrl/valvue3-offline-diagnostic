@@ -3,6 +3,6 @@
   "name": "valvue3-offline-diagnostic",
   "version": "0.1.3",
   "platform": "Linux",
-  "model": "gpt-6-sol",
+  "model": "gpt-6.1-sol",
   "reasoning_effort": "high"
 }

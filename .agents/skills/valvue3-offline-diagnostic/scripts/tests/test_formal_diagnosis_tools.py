@@ -1098,7 +1098,7 @@ def _complete_integrated_result(run_dir: Path) -> dict:
     )
     result["model_provenance"].update(
         {
-            "model": "gpt-6-sol",
+            "model": "gpt-6.1-sol",
             "reasoning_effort": "high",
         }
     )
@@ -1161,7 +1161,7 @@ def test_integrated_model_call_preserves_model_rating_and_writes_both_layers(
 
     assert prepared["workflow"] == "single_valve_integrated_codex_v3"
     assert prepared["image_paths"]
-    assert prepared["worker_model"] == "gpt-6-sol"
+    assert prepared["worker_model"] == "gpt-6.1-sol"
     assert prepared["worker_reasoning_effort"] == "high"
     assert prepared["single_call_includes_visual_and_whole_valve_diagnosis"] is True
     request = _read_json(run_dir / prepared["request"])
@@ -1211,7 +1211,7 @@ def test_integrated_model_call_preserves_model_rating_and_writes_both_layers(
     template = _read_json(run_dir / prepared["template"])
     assert template["model_provenance"] == {
         "decision_source": "codex_exec_integrated",
-        "model": "gpt-6-sol",
+        "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "all_evidence_and_images_in_single_call": True,
         "rating_decided_by": "model",
@@ -1269,7 +1269,7 @@ def test_integrated_model_call_rejects_luna_or_non_high_worker(
 
     result = _complete_integrated_result(run_dir)
     result["model_provenance"]["model"] = "gpt-5.6-luna"
-    with pytest.raises(ValueError, match="requires model gpt-6-sol"):
+    with pytest.raises(ValueError, match="requires model gpt-6.1-sol"):
         single_valve_workflow.submit_integrated_model_result(
             run_dir, result
         )
@@ -1283,12 +1283,22 @@ def test_integrated_model_call_rejects_luna_or_non_high_worker(
 
 def test_new_model_contract_and_legacy_manifest_fallback() -> None:
     assert single_valve_workflow._run_model_contract({}) == ("gpt-5.6-sol", "medium")
-    with pytest.raises(ValueError, match="gpt-6-sol/high"):
+    with pytest.raises(ValueError, match="gpt-6.1-sol/high"):
         single_valve_workflow._require_new_model_contract("gpt-5.6-sol", "medium")
+    with pytest.raises(ValueError, match="gpt-6.1-sol/high"):
+        single_valve_workflow._require_new_model_contract("gpt-6-sol", "high")
     assert single_valve_workflow._run_model_contract({
         "worker_model": "gpt-6-sol",
         "worker_reasoning_effort": "high",
     }) == ("gpt-6-sol", "high")
+    with pytest.raises(ValueError, match="invalid run model contract"):
+        single_valve_workflow._run_model_contract({
+            "worker_model": "gpt-6-sol", "worker_reasoning_effort": "medium",
+        })
+    assert single_valve_workflow._run_model_contract({
+        "worker_model": "gpt-6.1-sol",
+        "worker_reasoning_effort": "high",
+    }) == ("gpt-6.1-sol", "high")
 
 
 def test_integrated_request_writes_source_bound_read_allowlist(tmp_path: Path) -> None:
@@ -1316,7 +1326,7 @@ def test_integrated_request_writes_source_bound_read_allowlist(tmp_path: Path) -
     assert str(specification.resolve()) in allowed
     assert str((project / "project.toml").resolve()) not in allowed
     request = _read_json(run_dir / "03_integrated_diagnosis_request.json")
-    assert request["model_contract"] == {"model": "gpt-6-sol", "reasoning_effort": "high"}
+    assert request["model_contract"] == {"model": "gpt-6.1-sol", "reasoning_effort": "high"}
     assert request["report_period_key"] == "batch_a"
     bundle = _read_json(run_dir / "01_evidence_bundle.json")
     assert "confirmed_mild_defect_required" not in bundle["rating_standard"]["2"]

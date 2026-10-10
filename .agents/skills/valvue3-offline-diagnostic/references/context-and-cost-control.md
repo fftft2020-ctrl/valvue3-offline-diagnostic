@@ -33,4 +33,4 @@ python .agents/skills/valvue3-offline-diagnostic/scripts/run_metered_codex.py ma
   --outcome accepted
 ```
 
-对于批量单阀诊断，完成确定性输入和 Schema 预检后，主 Agent 经同一计量入口逐阀串行调用 `gpt-6-sol`、`reasoning_effort=high` 并保存完整结果。不增加强制单阀探针门禁，不为降低 token 删减单阀完整证据、曲线或技术页。
+对于批量单阀诊断，完成确定性输入和 Schema 预检后，主 Agent 经同一计量入口逐阀串行调用 `gpt-6.1-sol`、`reasoning_effort=high` 并保存完整结果。不增加强制单阀探针门禁，不为降低 token 删减单阀完整证据、曲线或技术页。

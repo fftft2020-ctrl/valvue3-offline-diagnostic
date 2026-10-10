@@ -1,5 +1,7 @@
 # 已知问题与验证缺口
 
+当前交付方式已改为独立 Skill，停止 Docker 部署与新镜像分发。下文 Docker 结果保留为历史验收，不代表当前接收环境；原生 Skill 前置要求见 [运行环境](../.agents/skills/valvue3-offline-diagnostic/references/runtime-environment.md)。
+
 当前为0.1.3统一源码候选，实际验收见 [ACCEPTANCE.md](ACCEPTANCE.md)。
 
 ## 模型读取与工程结论

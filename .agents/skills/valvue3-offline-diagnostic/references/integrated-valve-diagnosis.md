@@ -1,7 +1,7 @@
 # 第三阶段单阀一体化模型合同
 
 本合同用于第二阶段参数批准后的正式诊断。由主 Agent 直接逐阀串行执行，不使用子代理，
-每阀执行一次 `gpt-6-sol`、`reasoning_effort=high` 的 `codex exec`；同一次调用同时读取全部原始资料、完整结构化证据、离线经验全文、
+每阀执行一次 `gpt-6.1-sol`、`reasoning_effort=high` 的 `codex exec`；同一次调用同时读取全部原始资料、完整结构化证据、离线经验全文、
 该阀全部曲线和已绑定技术页，并直接产生逐图判读与整阀诊断。
 
 ## 职责边界
@@ -33,7 +33,7 @@ python .agents/skills/valvue3-offline-diagnostic/scripts/formal_diagnosis_tools/
 
 ## Codex Exec 运行合同
 
-主 Agent 通过同一计量入口逐阀串行执行，不启动子代理编排。新正式诊断 `codex exec` 必须使用 `gpt-6-sol`、`reasoning_effort=high`；运行清单、输出 schema 和提交校验绑定同一约定，不约束主 Agent 的模型。旧冻结包仍按原运行来源只读验证，不回填新模型来源。
+主 Agent 通过同一计量入口逐阀串行执行，不启动子代理编排。新正式诊断 `codex exec` 必须使用 `gpt-6.1-sol`、`reasoning_effort=high`；运行清单、输出 schema 和提交校验绑定同一约定，不约束主 Agent 的模型。已有 `gpt-6-sol/high` 运行和旧冻结包仍按原运行来源只读验证，不回填新模型来源；未声明模型的旧清单保留原有 `gpt-5.6-sol/medium` 兼容路径。
 不得使用 Luna，也不得为单张图片另建读图调用。每张图各传一个
 `--image`，并通过统一计量入口执行：
 
@@ -43,7 +43,7 @@ python .agents/skills/valvue3-offline-diagnostic/scripts/run_metered_codex.py ru
   --stage integrated_diagnosis \
   --call-id "<诊断版本>.<阀门位号>.attempt-1" \
   --valve-tag "<阀门位号>" \
-  --model gpt-6-sol \
+  --model gpt-6.1-sol \
   --reasoning-effort high \
   --cwd /tmp --ignore-user-config --ignore-rules \
   --read-allowlist "<运行根目录>/<阀门位号>/allowed_reads.json" \
@@ -87,7 +87,7 @@ python .agents/skills/valvue3-offline-diagnostic/scripts/formal_diagnosis_tools/
   --result "<本阀 codex exec 结果.json>"
 ```
 
-提交工具只验证：单次 `gpt-6-sol` high 模型来源、逐原件读取声明的来源/哈希/状态与完整覆盖、图像 SHA-256 完整覆盖、字段边界、
+提交工具只验证：单次 `gpt-6.1-sol` high 模型来源、逐原件读取声明的来源/哈希/状态与完整覆盖、图像 SHA-256 完整覆盖、字段边界、
 4级功能影响证据和具体反证据。阈值适用性和缺口影响由模型结合完整证据判断，脚本不再用指标名与评价词匹配阻断提交；阈值引用与不确定性仍随诊断保留。经验编号、采用清单和未采用理由不属于输出或验收要求。
 验收后使用 `run_metered_codex.py mark` 把同一 `call-id` 登记为
 `accepted` 或 `rejected`；拒绝时在 `--reason` 中保留简短原因。

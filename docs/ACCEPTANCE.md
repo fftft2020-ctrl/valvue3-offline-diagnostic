@@ -1,5 +1,7 @@
 # 0.1.3 统一源码验收
 
+当前交付方式已改为独立 Skill，停止 Docker 部署与新镜像分发。下文 Docker 结果保留为历史验收，不代表当前接收环境；原生 Skill 前置要求见 [运行环境](../.agents/skills/valvue3-offline-diagnostic/references/runtime-environment.md)。
+
 日期：2026-10-10。当前为 0.1.3 统一源码候选；GitHub 以同版本导出文件整合。
 
 ## 已通过

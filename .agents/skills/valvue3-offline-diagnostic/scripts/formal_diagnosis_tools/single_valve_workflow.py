@@ -67,7 +67,7 @@ INTEGRATED_REQUEST_FILENAME = "03_integrated_diagnosis_request.json"
 INTEGRATED_TEMPLATE_FILENAME = "03_integrated_diagnosis_result_template.json"
 INTEGRATED_SCHEMA_FILENAME = "03_integrated_diagnosis_output_schema.json"
 INTEGRATED_PROMPT_FILENAME = "03_integrated_diagnosis_prompt.md"
-INTEGRATED_MODEL = "gpt-6-sol"
+INTEGRATED_MODEL = "gpt-6.1-sol"
 INTEGRATED_REASONING_EFFORT = "high"
 LEGACY_INTEGRATED_MODEL = "gpt-5.6-sol"
 LEGACY_INTEGRATED_REASONING_EFFORT = "medium"
@@ -79,7 +79,7 @@ ALGORITHM_AUDIT_CONTRACT = "deterministic_legacy_rating_v1"
 
 def _require_new_model_contract(model: str, reasoning_effort: str) -> None:
     if (model, reasoning_effort) != (INTEGRATED_MODEL, INTEGRATED_REASONING_EFFORT):
-        raise ValueError("new offline diagnosis runs require gpt-6-sol/high")
+        raise ValueError("new offline diagnosis runs require gpt-6.1-sol/high")
 
 
 def _run_model_contract(manifest: dict[str, Any]) -> tuple[str, str]:
@@ -87,7 +87,8 @@ def _run_model_contract(manifest: dict[str, Any]) -> tuple[str, str]:
     effort = manifest.get("worker_reasoning_effort")
     if model is None and effort is None:
         return LEGACY_INTEGRATED_MODEL, LEGACY_INTEGRATED_REASONING_EFFORT
-    if (model, effort) != (INTEGRATED_MODEL, INTEGRATED_REASONING_EFFORT):
+    # Existing 6-sol runs retain their recorded model when read or validated.
+    if (model, effort) not in ((INTEGRATED_MODEL, INTEGRATED_REASONING_EFFORT), ("gpt-6-sol", "high")):
         raise ValueError("invalid run model contract")
     return model, effort
 

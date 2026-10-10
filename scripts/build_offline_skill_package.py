@@ -27,13 +27,8 @@ SUPPLEMENTAL_FILES = {
 
 REPOSITORY_FILES = {
     name: name for name in (
-        "Dockerfile", "compose.yaml", "compose.ocr.yaml", "compose.isolation.yaml", ".env.example",
-        ".github/workflows/docker.yml", "pytest.ini",
-        "docker/doctor.py", "docker/entrypoint.sh", "docker/import.sh", "docker/valvue3-diagnostic.apparmor",
-        "docker/installers/README.md", "docker/isolation_smoke.py", "docker/ocr_server.py",
-        "docker/ocr_smoke.py", "docker/package.sh", "docker/requirements-ocr.txt",
-        "docker/run.sh", "docker/tests/test_packaging.py",
-        "docs/ACCEPTANCE.md", "docs/KNOWN_ISSUES.md", "docs/DOCKER.md",
+        ".github/workflows/skill.yml", "pytest.ini",
+        "docs/ACCEPTANCE.md", "docs/KNOWN_ISSUES.md",
         "docs/offline-source-workflow.md", "docs/offline-repository-readme.txt",
         "docs/offline-repository-gitignore.txt", "scripts/build_offline_skill_package.py",
         "tests/test_offline_skill_distribution.py",
@@ -45,7 +40,7 @@ REPOSITORY_FILES.update({"README.md": "docs/offline-repository-readme.txt",
 
 
 def export_repository(output: Path) -> dict[str, object]:
-    """Generate a fresh GitHub/build tree from the one maintained local source."""
+    """Generate a fresh GitHub Skill source tree from the one maintained local source."""
     sources = {f".agents/skills/valvue3-offline-diagnostic/{name}":
                f".agents/skills/valvue3-offline-diagnostic/{name}"
                for name in distribution_files(SKILL)}
@@ -61,19 +56,6 @@ def export_repository(output: Path) -> dict[str, object]:
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / source, target)
         hashes[name] = hashlib.sha256(target.read_bytes()).hexdigest()
-    # Explicit files only: future customer data or auth can never enter the context.
-    included = {name for name in sources if name.startswith(".agents/skills/")}
-    included.update(("Dockerfile", "scripts/build_offline_skill_package.py",
-                     *SUPPLEMENTAL_FILES.values(), "docker/doctor.py", "docker/entrypoint.sh",
-                     "docker/ocr_server.py", "docker/ocr_smoke.py", "docker/isolation_smoke.py",
-                     "docker/requirements-ocr.txt", "docker/installers/README.md",
-                     "docker/installers/wps-office.deb"))
-    for name in list(included):
-        included.update(parent.as_posix() + "/" for parent in Path(name).parents if parent != Path("."))
-    ignore = "# Generated explicit build-context allowlist.\n**\n"
-    ignore += "".join(f"!{name}\n" for name in sorted(included))
-    (output / ".dockerignore").write_text(ignore, encoding="utf-8")
-    hashes[".dockerignore"] = hashlib.sha256(ignore.encode()).hexdigest()
     return {"repository": str(output.resolve()), "version": runtime_identity(SKILL)["version"],
             "files": hashes, "note": "生成副本；只修改本机维护源码，不在此目录开发"}
 
@@ -127,7 +109,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     destination = parser.add_mutually_exclusive_group(required=True)
     destination.add_argument("--output", type=Path, help="独立 Skill ZIP（新路径）")
-    destination.add_argument("--repository-output", type=Path, help="GitHub/Docker 源码副本（新目录）")
+    destination.add_argument("--repository-output", type=Path, help="GitHub Skill 源码副本（新目录）")
     args = parser.parse_args()
     try:
         result = (export_repository(args.repository_output) if args.repository_output

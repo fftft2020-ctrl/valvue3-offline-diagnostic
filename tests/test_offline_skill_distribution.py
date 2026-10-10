@@ -61,6 +61,19 @@ def test_repository_export_preserves_source_and_excludes_local_data(tmp_path: Pa
     result = builder.export_repository(output)
     assert result["version"] == runtime_identity(builder.SKILL)["version"]
     assert not (output / "skill").exists()
+    for retired in ("Dockerfile", "docker", "compose.yaml", "compose.ocr.yaml",
+                    "compose.isolation.yaml", ".dockerignore", ".env.example",
+                    ".github/workflows/docker.yml", "docs/DOCKER.md"):
+        assert not (output / retired).exists()
+    assert (output / ".github/workflows/skill.yml").is_file()
+    rebuilt = output / ".scratch/rebuilt.zip"
+    checked = subprocess.run([sys.executable, str(output / "scripts/build_offline_skill_package.py"),
+                              "--output", str(rebuilt)], cwd=output,
+                             capture_output=True, text=True, check=False)
+    assert checked.returncode == 0, checked.stderr + checked.stdout
+    original = tmp_path / "source.zip"
+    builder.build_package(original)
+    assert rebuilt.read_bytes() == original.read_bytes()
     assert not (output / ".git").exists()
     assert not (output / ".agents/skills/online-valve-diagnostic").exists()
     for name, expected in result["files"].items():

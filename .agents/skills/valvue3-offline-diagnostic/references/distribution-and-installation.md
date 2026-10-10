@@ -1,6 +1,6 @@
 # 独立安装与分发合同
 
-首次安装或脱离原工作区使用时读本文，再读 [运行环境](runtime-environment.md)。本 Skill 的“离线”指 ValVue3 离线测试资料；模型诊断仍需联网。首版只面向 Linux + Codex，Windows、macOS 与其他 Agent 未验证。模型固定为 `gpt-6-sol` / `high`，不可自动降级或替换。
+首次安装或脱离原工作区使用时读本文，再读 [运行环境](runtime-environment.md)。本 Skill 的“离线”指 ValVue3 离线测试资料；模型诊断仍需联网。当前只分发 Skill，不要求 Docker。首版只面向 Linux + Codex，Windows、macOS 与其他 Agent 未验证。模型固定为 `gpt-6.1-sol` / `high`，不可自动降级或替换。
 
 ## 安装与环境检查
 
@@ -8,7 +8,17 @@
 
 也可以安装到接收环境的个人 Skill 目录；此时所有命令中的 `.agents/skills/valvue3-offline-diagnostic` 必须替换为实际安装目录，客户项目仍使用明确的独立绝对路径。Skill 自动发现取决于接收环境；没有自动发现时先显式读取 `SKILL.md`，不能以文件已解压宣称已被 Agent 加载。
 
-使用接收方的隔离 Python 环境，按锁定依赖安装。不要复制本机 `.venv`、认证、代理配置或模型缓存：
+使用接收方的隔离 Python 环境，按锁定依赖安装。不要复制本机 `.venv`、认证、代理配置或模型缓存。只使用 Skill 时先准备运行环境和自己的登录：
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r .agents/skills/valvue3-offline-diagnostic/requirements.txt
+codex -c 'cli_auth_credentials_store="file"' login --device-auth
+python .agents/skills/valvue3-offline-diagnostic/scripts/check_environment.py
+```
+
+诊断还需 Codex CLI、Bubblewrap 和实际通过的系统隔离；Python 包安装成功并不代替这些要求。不开 OCR、不导出正式 PDF 时，只看 `docx` 与 `diagnosis` 的前置结果，无需为可选阶段安装全部组件。开发和独立匿名验收时再装测试依赖：
 
 ```bash
 python -m pip install -r .agents/skills/valvue3-offline-diagnostic/requirements-test.txt
@@ -21,7 +31,7 @@ python .agents/skills/valvue3-offline-diagnostic/scripts/validate_offline_regres
 
 自检仅运行本机探针，不登录、不提交模型请求、不安装应用、不修改配置、不启动 OCR 或 WPS。输出按 `docx`、`diagnosis`、`ocr`、`wps_pdf` 分别列出缺失依赖；`partial` 返回码为 1，只限制受影响阶段。`prerequisites_available` 只证明检查到的前置能力，不等于远端模型访问、OCR 准确率或 WPS 交付已验收。模型缓存出现目标模型也不证明当前权限。缺失模型能力须报告，不自动切换模型。
 
-OCR 是可选外部本机服务；未启用时大模型仍可实际读图，按参数复核及确认路径写回事实，脚本不会自动补齐所有扫描字段。启用 OCR 时需要提供 `/ready`（JSON `ready=true`）、`/v1/ocr` 和 `/v1/document`，地址及数据格式见引擎 `document_ocr_cache.py`。Skill 不包含 OCR 服务实现、模型权重或安装器；只有需要 OCR 的输入受其缺失影响。正式 PDF 还需要 WPS、RPC 和显示环境；LibreOffice 仅生成内部检查 PDF。模型调用沿用环境中的标准代理变量，未设置时不强制本机代理端口；证据隔离保留。
+OCR 是可选外部本机服务；未启用时大模型仍可实际读图，按参数复核及确认路径写回事实，脚本不会自动补齐所有扫描字段。启用 OCR 时需要提供 `/ready`（JSON `ready=true`）、`/v1/ocr` 和 `/v1/document`，地址及数据格式见引擎 `document_ocr_cache.py`。Skill 不包含 OCR 服务实现、模型权重或安装器；只有需要 OCR 的输入受其缺失影响；当前分发不负责部署 OCR 服务。正式 PDF 还需要 WPS、RPC 和显示环境；LibreOffice 仅生成内部检查 PDF。模型调用沿用环境中的标准代理变量，未设置时不强制本机代理端口；证据隔离保留。
 
 ## 随包生效的业务边界
 
@@ -57,4 +67,4 @@ python scripts/build_offline_skill_package.py --output ".scratch/offline-skill-d
 源代码、白名单、锁定依赖和匿名夹具为重建所需保留项；经确认后可清理无引用的解包测试目录、pytest 缓存和探针产物，不能清理客户项目证据。ZIP 可用发布命令重建；保持相同输入会得到相同 ZIP。真实诊断重建可能重新调用模型，存在 token、时间和结果差异，优先恢复已保存冻结包。
 
 
-维护源码包含上述构建器；GitHub 与 Docker 使用同一白名单源码，由 `--repository-output` 导出到新目录。只在维护源码中修改，不在生成副本里开发。历史分发包与被诊断引用的版本继续保留；统一维护版本不删除历史证据。
+维护源码包含上述构建器；GitHub 与 Skill ZIP 使用同一白名单源码，GitHub 源码由 `--repository-output` 导出到新目录，不包含 Docker 部署文件。只在维护源码中修改，不在生成副本里开发。历史分发包与被诊断引用的版本继续保留；统一维护版本不删除历史证据。
