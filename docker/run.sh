@@ -19,8 +19,10 @@ case "$action" in
     ;;
   build) "${compose[@]}" build "$@";;
   login)
-    # service:ocr needs a running namespace, but login need not wait for model loading.
-    "${compose[@]}" up -d ocr
+    # Start the shared namespace only when OCR was explicitly selected.
+    if "${compose[@]}" config --services | grep -qx ocr; then
+      "${compose[@]}" up -d ocr
+    fi
     "${compose[@]}" run --rm --no-deps diagnostic login "$@"
     ;;
   doctor|shell|agent|init-project|report|ocr-smoke|isolation-smoke)

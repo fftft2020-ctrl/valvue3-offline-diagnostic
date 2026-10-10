@@ -1293,6 +1293,11 @@ def test_new_model_contract_and_legacy_manifest_fallback() -> None:
 
 def test_integrated_request_writes_source_bound_read_allowlist(tmp_path: Path) -> None:
     project, analysis, _ = _synthetic_project(tmp_path)
+    specification = project / "specs/VALVE-001/specification.pdf"
+    specification.parent.mkdir(parents=True)
+    specification.write_bytes(b"anonymous specification original")
+    analysis[0]["report_pages"][0]["source_sha256"] = single_valve_workflow._sha256_file(specification)
+    _refresh_structured_evidence(project, analysis[0])
     (project / "project.toml").write_text("[project]\ncustomer='Demo'\n", encoding="utf-8")
     run_root = project / "work/formal_diagnosis/runs/current"
     single_valve_workflow.prepare_project_runs(
@@ -1308,6 +1313,7 @@ def test_integrated_request_writes_source_bound_read_allowlist(tmp_path: Path) -
     allowlist = _read_json(allowlist_path)
     allowed = {item["path"] for item in allowlist["files"]}
     assert str((project / "raw/VALVE-001/source.devdata").resolve()) in allowed
+    assert str(specification.resolve()) in allowed
     assert str((project / "project.toml").resolve()) not in allowed
     request = _read_json(run_dir / "03_integrated_diagnosis_request.json")
     assert request["model_contract"] == {"model": "gpt-6-sol", "reasoning_effort": "high"}

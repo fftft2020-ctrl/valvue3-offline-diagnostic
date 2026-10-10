@@ -117,3 +117,42 @@ def test_replay_runs_serially_and_stops_on_transport_failure(tmp_path: Path, mon
     replay.run(SimpleNamespace(run_root=tmp_path, jobs=1))
     assert calls == ["FV-001"]
     assert replay.read(tmp_path / "execution_summary.json")["pending"] == 2
+
+
+@pytest.mark.parametrize("prefixed", [False, True])
+def test_scan_page_source_is_bound_without_parsed_specification_fields(tmp_path, prefixed):
+    project = tmp_path / "project"
+    run = tmp_path / "run"
+    run.mkdir()
+    source = project / "specs/FV-001/scan.pdf"
+    source.parent.mkdir(parents=True)
+    source.write_bytes(b"anonymous scan original")
+    page = {"source": ("specs/" if prefixed else "") + "FV-001/scan.pdf",
+            "source_sha256": replay.digest(source)}
+    request = {"valve_tag": "FV-001", "source_locator": {"project_root": str(project)},
+               "evidence": {"source_files": [], "curve_images": [], "specification_images": [],
+                            "structured_evidence": {"evidence_pages": [page]}}}
+    for name in ("00_experience.md", "01_evidence_bundle.json", "03_integrated_diagnosis_prompt.md",
+                 "03_integrated_diagnosis_output_schema.json", "03_integrated_diagnosis_result_template.json"):
+        (run / name).write_text("{}")
+    path = run / "03_integrated_diagnosis_request.json"
+    path.write_text(json.dumps(request))
+    allow = meter.build_diagnosis_allowlist(run, project)
+    assert {item["path"]: item["sha256"] for item in allow["files"]}[str(source)] == replay.digest(source)
+    source.write_bytes(b"changed scan")
+    with pytest.raises(ValueError, match="specification source identity changed"):
+        meter.build_diagnosis_allowlist(run, project)
+    page["source_sha256"] = replay.digest(source)
+    page["source"] = "../output/old.pdf"
+    path.write_text(json.dumps(request))
+    with pytest.raises(ValueError, match="safe relative path"):
+        meter.build_diagnosis_allowlist(run, project)
+    external = tmp_path / "outside.pdf"
+    external.write_bytes(b"excluded original")
+    source.unlink()
+    source.symlink_to(external)
+    page["source"] = ("specs/" if prefixed else "") + "FV-001/scan.pdf"
+    page["source_sha256"] = replay.digest(external)
+    path.write_text(json.dumps(request))
+    with pytest.raises(ValueError, match="specification source identity changed"):
+        meter.build_diagnosis_allowlist(run, project)

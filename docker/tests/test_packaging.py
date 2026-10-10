@@ -195,14 +195,15 @@ def test_missing_wps_does_not_change_skill_release():
     assert verify_package()["status"] == "source_tree"
 
 
-def test_bundle_is_portable_and_excludes_sender_auth_and_projects(tmp_path):
+@pytest.mark.parametrize("with_ocr", [False, True])
+def test_bundle_is_portable_and_excludes_sender_auth_and_projects(tmp_path, with_ocr):
     import os
     import shutil
     import sys
     import tarfile
     source = tmp_path / "sender"
     source.mkdir()
-    for name in ("compose.yaml", "compose.isolation.yaml", ".env.example"):
+    for name in ("compose.yaml", "compose.ocr.yaml", "compose.isolation.yaml", ".env.example"):
         shutil.copy(ROOT / name, source)
     shutil.copytree(ROOT / "docker", source / "docker")
     shutil.copytree(ROOT / "docs", source / "docs")
@@ -215,10 +216,13 @@ def test_bundle_is_portable_and_excludes_sender_auth_and_projects(tmp_path):
     binary.mkdir()
     docker = binary / "docker"
     docker.write_text(f"#!{sys.executable}\n" + r'''
-import io,json,sys,tarfile
+import io,json,os,sys,tarfile
 a=sys.argv[1:]
 if a[:2]==["compose","config"]:
- print(json.dumps({"services":{"diagnostic":{"image":"private-runtime:v7"},"ocr":{"image":"private-ocr:v7"}}}))
+ services={"diagnostic":{"image":"private-runtime:v7"}}
+ if os.environ["TEST_WITH_OCR"]=="1": services["ocr"]={"image":"private-ocr:v7"}
+ if "--services" in a: print("\n".join(services))
+ else: print(json.dumps({"services":services}))
 elif a[:2]==["image","save"]:
  sys.stdout.buffer.write(b"anonymous image archive test double")
 elif a[:2]==["compose","run"]:
@@ -231,7 +235,7 @@ else: raise SystemExit("unexpected Docker command: "+repr(a))
     docker.chmod(0o755)
     (binary / "id").write_text("#!/usr/bin/env bash\necho 1000\n")
     (binary / "id").chmod(0o755)
-    env = {**os.environ, "PATH": f"{binary}:{os.environ['PATH']}"}
+    env = {**os.environ, "PATH": f"{binary}:{os.environ['PATH']}", "TEST_WITH_OCR": str(int(with_ocr))}
     subprocess.run(["bash", "docker/package.sh", "bundle"], cwd=source, env=env,
                    capture_output=True, text=True, check=True)
     bundle = source / "bundle"
@@ -239,11 +243,20 @@ else: raise SystemExit("unexpected Docker command: "+repr(a))
     assert not (bundle / ".env").exists()
     assert not (bundle / "projects").exists()
     assert not (bundle / ".runtime").exists()
-    with tarfile.open(bundle / "models.tar.gz") as archive:
-        assert archive.getnames() == ["model.bin"]
+    assert (bundle / "models.tar.gz").exists() is with_ocr
+    assert ("COMPOSE_FILE=compose.yaml:compose.ocr.yaml" in (bundle / ".env.example").read_text()) is with_ocr
+    if with_ocr:
+        with tarfile.open(bundle / "models.tar.gz") as archive:
+            assert archive.getnames() == ["model.bin"]
     subprocess.run(["bash", "docker/import.sh"], cwd=bundle, env=env,
                    capture_output=True, text=True, check=True)
-    assert (bundle / ".runtime/models/model.bin").read_bytes() == b"anonymous model cache"
+    if with_ocr:
+        assert (bundle / ".runtime/models/model.bin").read_bytes() == b"anonymous model cache"
+        refused = subprocess.run(["bash", "docker/import.sh"], cwd=bundle, env=env, capture_output=True, text=True)
+        assert refused.returncode != 0
+        assert "Model directory exists" in refused.stderr
+    else:
+        assert list((bundle / ".runtime/models").iterdir()) == []
     assert list((bundle / ".runtime/codex").iterdir()) == []
 
 
@@ -258,3 +271,29 @@ def test_entrypoint_refuses_root_before_launching_any_tool(tmp_path):
     assert result.returncode == 1
     assert "non-root" in result.stderr
     assert result.stdout == ""
+
+
+@pytest.mark.parametrize("with_ocr", [False, True])
+def test_login_starts_ocr_only_when_selected(tmp_path, with_ocr):
+    import os
+    import shutil
+    source = tmp_path / "source"
+    (source / "docker").mkdir(parents=True)
+    shutil.copy(ROOT / "docker/run.sh", source / "docker/run.sh")
+    binary = tmp_path / "bin"
+    binary.mkdir()
+    docker = binary / "docker"
+    docker.write_text("#!/usr/bin/env bash\n"
+                      'printf "%s\\n" "$*" >> "$TEST_COMMAND_LOG"\n'
+                      'if [[ "$*" == "compose config --services" ]]; then\n'
+                      '  echo diagnostic\n'
+                      '  if [[ "$TEST_WITH_OCR" == 1 ]]; then echo ocr; fi\n'
+                      'fi\n')
+    docker.chmod(0o755)
+    log = tmp_path / "commands"
+    env = {**os.environ, "PATH": f"{binary}:{os.environ['PATH']}",
+           "TEST_COMMAND_LOG": str(log), "TEST_WITH_OCR": str(int(with_ocr))}
+    subprocess.run(["bash", "docker/run.sh", "login"], cwd=source, env=env, check=True)
+    commands = log.read_text().splitlines()
+    assert ("compose up -d ocr" in commands) is with_ocr
+    assert commands[-1] == "compose run --rm --no-deps diagnostic login"

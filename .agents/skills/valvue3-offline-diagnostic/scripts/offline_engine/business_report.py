@@ -1486,7 +1486,14 @@ def _device_rows(valve: Any, unit_name: str) -> list[tuple[str, str]]:
 
 def _metric_rows(valve: Any) -> tuple[list[tuple[str, str]], dict[str, str]]:
     metrics = valve.metrics
-    supply = metrics.get("Supply Pressure") or {}
+    supply = metrics.get("Supply Pressure")
+    if isinstance(supply, dict):
+        supply_display = (
+            f"{format_number(supply.get('min'), ' psi')} - {format_number(supply.get('max'), ' psi')}；"
+            f"平均 {format_number(supply.get('avg'), ' psi')}"
+        )
+    else:
+        supply_display = format_number(supply, " psi")
     key_rows: list[tuple[str, str]] = [
         (CUSTOMER_METRIC_LABELS["Average Error"], format_number(metrics.get("Average Error"), "%")),
         (CUSTOMER_METRIC_LABELS["T86"], format_number(metrics.get("T86"), "s")),
@@ -1495,8 +1502,7 @@ def _metric_rows(valve: Any) -> tuple[list[tuple[str, str]], dict[str, str]]:
         (CUSTOMER_METRIC_LABELS["Overshoot"], format_number(metrics.get("Overshoot"), "%")),
         (
             CUSTOMER_METRIC_LABELS["Supply Pressure"],
-            f"{format_number(supply.get('min'), ' psi')} - {format_number(supply.get('max'), ' psi')}；"
-            f"平均 {format_number(supply.get('avg'), ' psi')}",
+            supply_display,
         ),
     ]
     ramp = (

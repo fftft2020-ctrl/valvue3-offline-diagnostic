@@ -24,6 +24,7 @@ jobs:
       - run: bash docker/run.sh setup
       - run: docker compose config --quiet
       - run: docker compose -f compose.yaml -f compose.isolation.yaml config --quiet
+      - run: docker compose -f compose.yaml -f compose.ocr.yaml -f compose.isolation.yaml config --quiet
       - run: docker compose build diagnostic
       - name: Image imports and immutable Skill
         run: |
@@ -35,7 +36,16 @@ jobs:
             --security-opt seccomp=unconfined --security-opt apparmor=unconfined \
             --security-opt systempaths=unconfined \
             --entrypoint python valvue3-runtime:0.1.3 /usr/local/lib/valvue/isolation_smoke.py
+      - name: Install runtime-only bundle in a fresh directory, without OCR or account
+        run: |
+          bash docker/package.sh .scratch/ci-runtime-bundle
+          cd .scratch/ci-runtime-bundle
+          bash docker/import.sh
+          bash docker/run.sh doctor --stage docx
+          COMPOSE_FILE=compose.yaml:compose.isolation.yaml bash docker/run.sh isolation-smoke
   real-ocr:
+    env:
+      COMPOSE_FILE: compose.yaml:compose.ocr.yaml
     runs-on: ubuntu-22.04
     timeout-minutes: 60
     steps:

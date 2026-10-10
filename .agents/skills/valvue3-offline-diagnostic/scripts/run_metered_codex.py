@@ -225,6 +225,15 @@ def build_diagnosis_allowlist(run_dir: Path, project: Path) -> dict[str, Any]:
         if not path.is_relative_to(project / "raw") or _sha256(path) != entry["sha256"]:
             raise ValueError(f"raw source identity changed: {path}")
         paths.add(path)
+    # Report page sources may be relative to specs/, without a parsed text field.
+    for page in evidence.get("structured_evidence", {}).get("evidence_pages", []):
+        source = Path(str(page.get("source", "")))
+        if not source.parts or source.is_absolute() or ".." in source.parts:
+            raise ValueError("specification page source must be a safe relative path")
+        path = (project / source if source.parts[0] == "specs" else project / "specs" / source).resolve()
+        if not path.is_relative_to(project / "specs") or _sha256(path) != page.get("source_sha256"):
+            raise ValueError(f"specification source identity changed: {path}")
+        paths.add(path)
     for value in _source_paths(evidence):
         path = (project / value).resolve()
         if path.is_file() and any(path.is_relative_to(project / part) for part in ("raw", "specs")):

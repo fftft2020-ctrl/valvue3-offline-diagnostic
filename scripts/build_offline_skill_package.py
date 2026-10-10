@@ -27,7 +27,7 @@ SUPPLEMENTAL_FILES = {
 
 REPOSITORY_FILES = {
     name: name for name in (
-        "Dockerfile", "compose.yaml", "compose.isolation.yaml", ".env.example",
+        "Dockerfile", "compose.yaml", "compose.ocr.yaml", "compose.isolation.yaml", ".env.example",
         ".github/workflows/docker.yml", "pytest.ini",
         "docker/doctor.py", "docker/entrypoint.sh", "docker/import.sh", "docker/valvue3-diagnostic.apparmor",
         "docker/installers/README.md", "docker/isolation_smoke.py", "docker/ocr_server.py",

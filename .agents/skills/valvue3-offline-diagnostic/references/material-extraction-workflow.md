@@ -30,7 +30,7 @@ Markdown 阅读层的边界是：
 
 - PDF 物理页码、局部标题、曲线区块和表格单元格归属仍以原 PDF 的逐页文本/OCR 和布局为准，不得根据扁平化 Markdown 重建页码。
 - `.devdata`、XML、JSON 等不受支持或需要保留结构语义的文件继续使用结构化解析，不转成 Markdown 后再猜字段。
-- 扫描或纯图像 PDF 直接使用本机 OCR，不调用托管云端 Parse 上传客户文件。
+- OCR 可选：启用时扫描或纯图像 PDF 使用本机 OCR，不调用托管云端 Parse 上传客户文件；未启用时通过计量 `codex exec` 实际读原页，按下文视觉复核和人工确认路径补齐有依据的事实。脚本保留 OCR 失败记录，不保证自动提取完整；看不清或身份、页归属不明时保留待复核，不能跳过完整覆盖检查。
 - 曲线形状、报告页面和规格书的视觉归属仍按工作区合同使用 `codex exec` 实际看图。
 
 读取顺序是：
@@ -38,7 +38,7 @@ Markdown 阅读层的边界是：
 1. 优先使用完整原生/结构化读取，按需通过 `$convert-documents-to-markdown` 补充全文阅读层；
 2. `.devdata`、JSON、XML 等继续读取结构化内容，CSV、XLSX/XLS 始终保留单元格结构，即使生成了辅助 Markdown；
 3. PDF、DOCX/DOC、TXT/MD 继续读取原生文字、页码和表格，用于定位和证据引用；
-4. 只对无可用文字的 PDF 页、JPG/PNG/TIFF/BMP 调用本机 OCR；
+4. OCR 启用时只对需要识别的页面/图片调用本机服务；未启用时直接实际读图，并保留原件定位、哈希、复核结果与参数确认；
 5. 安全解包 ZIP 到 `work/intake-unpacked/<文件哈希>/`，拒绝路径越界、过多条目和过大解包。
 
 旧诊断报告默认只进入补充料单，不作为当前证据。标准流程不读旧 `analysis_summary.json`、旧冻结包、旧评级或旧结论，也不覆盖它们；只有原文件哈希和 OCR 策略版本一致的页面文字缓存可以复用。
@@ -88,7 +88,7 @@ Specification、气路页和普通附件页必须分别记录 `specification`、
 
 ## 3. Codex Exec 视觉复核
 
-只处理 `review-queue.json` 中具有非空 `image_path` 的条目。对每个不同图片添加一个 `-i`，并按工作区看图合同执行：
+自动队列复核只处理 `review-queue.json` 中具有非空 `image_path` 的条目。队列不等于全部扫描件：没有 OCR 且没有文字标签的页面可能无法自动生成字段复核项，主 Agent 仍须实际读原页，核对阀门与页归属，向用户提交事实参数确认；经确认的补充值按第 4 节人工覆盖写回，保留原件引用和确认依据，重跑提取。不得凭空编造 `review_id` 或把仅在聊天中的读图结果视为已入库。对每个不同图片添加一个 `-i`，并按工作区看图合同执行：
 
 ```bash
 python .agents/skills/valvue3-offline-diagnostic/scripts/run_metered_codex.py run \
