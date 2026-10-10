@@ -1,0 +1,7 @@
+# Applied explicitly to the diagnostic container, never globally.
+abi <abi/4.0>,
+include <tunables/global>
+
+profile valvue3-diagnostic flags=(unconfined) {
+  userns,
+}

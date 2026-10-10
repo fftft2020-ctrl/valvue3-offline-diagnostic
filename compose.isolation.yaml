@@ -1,0 +1,9 @@
+# Explicit Linux-only option for nested Bubblewrap user namespaces.
+# No privileged mode, host mounts, Docker socket or SYS_ADMIN capability.
+# This relaxes syscall/AppArmor/proc masking for diagnostic only; read the guide.
+services:
+  diagnostic:
+    security_opt:
+      - seccomp=unconfined
+      - apparmor=${DIAGNOSTIC_APPARMOR_PROFILE:-unconfined}
+      - systempaths=unconfined
