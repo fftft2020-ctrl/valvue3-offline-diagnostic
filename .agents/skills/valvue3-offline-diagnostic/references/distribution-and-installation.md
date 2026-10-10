@@ -21,7 +21,7 @@ python .agents/skills/valvue3-offline-diagnostic/scripts/validate_offline_regres
 
 自检仅运行本机探针，不登录、不提交模型请求、不安装应用、不修改配置、不启动 OCR 或 WPS。输出按 `docx`、`diagnosis`、`ocr`、`wps_pdf` 分别列出缺失依赖；`partial` 返回码为 1，只限制受影响阶段。`prerequisites_available` 只证明检查到的前置能力，不等于远端模型访问、OCR 准确率或 WPS 交付已验收。模型缓存出现目标模型也不证明当前权限。缺失模型能力须报告，不自动切换模型。
 
-OCR 是外部本机服务，需要提供 `/ready`（JSON `ready=true`）、`/v1/ocr` 和 `/v1/document`，地址及数据格式见引擎 `document_ocr_cache.py`。Skill 不包含 OCR 服务实现、模型权重或安装器；只有需要 OCR 的输入受其缺失影响。正式 PDF 还需要 WPS、RPC 和显示环境；LibreOffice 仅生成内部检查 PDF。模型调用沿用环境中的标准代理变量，未设置时不强制本机代理端口；证据隔离保留。
+OCR 是可选外部本机服务；未启用时大模型仍可实际读图，按参数复核及确认路径写回事实，脚本不会自动补齐所有扫描字段。启用 OCR 时需要提供 `/ready`（JSON `ready=true`）、`/v1/ocr` 和 `/v1/document`，地址及数据格式见引擎 `document_ocr_cache.py`。Skill 不包含 OCR 服务实现、模型权重或安装器；只有需要 OCR 的输入受其缺失影响。正式 PDF 还需要 WPS、RPC 和显示环境；LibreOffice 仅生成内部检查 PDF。模型调用沿用环境中的标准代理变量，未设置时不强制本机代理端口；证据隔离保留。
 
 ## 随包生效的业务边界
 

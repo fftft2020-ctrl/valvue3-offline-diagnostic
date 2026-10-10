@@ -472,3 +472,15 @@ def test_positioner_identity_prefers_accessory_model_and_falls_back_to_device_ty
         "定位器类型",
         "SVI2AP",
     )
+
+
+def test_supply_pressure_accepts_reviewed_point_without_inventing_extrema():
+    valve = generator.ValveReport(folder="ANONYMOUS-POINT-PRESSURE")
+    label = business_report.CUSTOMER_METRIC_LABELS["Supply Pressure"]
+    for value, expected in [("70 psi", "70 psi"), (70, "70 psi"), (0, "0 psi"), (None, presentation_module.MISSING)]:
+        valve.metrics = {"Supply Pressure": value}
+        rows, _ = business_report._metric_rows(valve)
+        assert dict(rows)[label] == expected
+    valve.metrics = {"Supply Pressure": {"min": 60, "max": 70, "avg": 65}}
+    rows, _ = business_report._metric_rows(valve)
+    assert dict(rows)[label] == "60 psi - 70 psi；平均 65 psi"
